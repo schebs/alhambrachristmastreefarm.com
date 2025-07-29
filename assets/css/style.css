@@ -1,66 +1,51 @@
-/* ----------------------------
-   Base & Background
----------------------------- */
+/* Base & Background */
 body {
-  /* light-to-medium green gradient */
-  background: linear-gradient(to bottom, #e9f5ec, #c8dfcf);
-  font-family: 'Georgia', serif;
-  color: #2a2a2a;
+  background: linear-gradient(180deg, #1a3a1a, #286428);
+  color: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.6;
 }
 
-/* white “card” wrapper for all page content */
 main {
   max-width: 900px;
   margin: 2rem auto;
-  padding: 2rem;
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border-radius: 8px;
-}
-
-/* ----------------------------
-   Header & Nav
----------------------------- */
-header {
-  text-align: center;
-  padding: 1rem 0 0.5rem;
+  padding: 0 1rem;
   background: transparent;
 }
 
+/* Header & Nav */
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: transparent;
+}
 header img {
-  width: 120px;
-  margin-bottom: 1rem;
+  max-width: 200px;
+  height: auto;
 }
-
 nav {
-  margin-bottom: 0.5rem;
+  margin: 1rem 0;
 }
-
 nav a {
-  margin: 0 1rem;
+  margin: 0 1.25rem;
+  color: #f5f5f5;
   text-decoration: none;
-  font-weight: bold;
-  color: #205027; /* darker pine green */
+  font-weight: 600;
+  font-size: 1.1rem;
 }
-
 nav a:hover {
-  color: #144b27;
+  text-decoration: underline;
 }
-
-/* subtle divider under nav */
 hr {
-  max-width: 600px;
-  margin: 0.75rem auto 1.5rem;
+  width: 80%;
+  margin: 0.5rem auto 1.5rem;
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255,255,255,0.3);
 }
 
-/* ----------------------------
-   Section Layout
----------------------------- */
+/* Section Layout */
 .section {
   display: flex;
   align-items: flex-start;
@@ -68,60 +53,44 @@ hr {
   margin: 3rem 0;
   flex-wrap: wrap;
 }
-
 .section img {
   width: 300px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
 .section-text {
   flex: 1;
-  min-width: 250px;
+  min-width: 280px;
 }
-
 h1, h2 {
-  color: #144b27;
+  color: #e9f5ec;
 }
 
-/* ----------------------------
-   Links & Buttons
----------------------------- */
+/* Links */
 a {
-  color: #2e6f30;
+  color: #def1de;
 }
-
 a:hover {
-  text-decoration: underline;
+  color: #ffffff;
 }
 
-/* ----------------------------
-   Footer
----------------------------- */
+/* Footer */
 footer {
-  text-align: center;
-  font-size: 0.9rem;
-  background: rgba(255,255,255,0.9);
-  padding: 2rem;
+  background: #123212;
+  padding: 2rem 1rem;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 3rem;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  color: #c8dccc;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
 }
-
 footer div {
   margin: 1rem;
   min-width: 150px;
 }
-
-.social {
-  margin-top: 1rem;
-}
-
 .social a {
   margin: 0 0.5rem;
-  font-size: 0.9rem;
-  color: #205027;
+  color: #c8dccc;
   text-decoration: none;
 }
