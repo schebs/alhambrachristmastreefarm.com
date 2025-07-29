@@ -9,7 +9,6 @@ body {
   padding: 0;
   line-height: 1.6;
 }
-
 main {
   max-width: 900px;
   margin: 0 auto;
@@ -28,30 +27,25 @@ main {
   align-items: center;
   justify-content: center;
 }
-
 .hero-content {
   text-align: center;
   padding: 0 1rem;
 }
-
 .hero-content p {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #f5f5f5;
   text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
-
 .scroll-down {
   font-size: 2rem;
-  color: #f5f5f5;
-  text-decoration: none;
   animation: bounce 2s infinite;
+  text-decoration: none;
+  color: #f5f5f5;
 }
-
 @keyframes bounce {
-  0%, 100% { transform: translateY(0) }
-  50%      { transform: translateY(10px) }
+  0%,100% { transform: translateY(0) }
+  50%     { transform: translateY(10px) }
 }
 
 /* ——————————————
@@ -66,7 +60,6 @@ main {
   z-index: 1000;
   padding: 1rem 0;
 }
-
 .site-header.scrolled {
   background: rgba(40, 100, 40, 0.95);
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
@@ -75,25 +68,15 @@ main {
 /* ensure content sits below fixed header */
 main,
 .hero-landing {
-  padding-top: 100px; /* adjust for header height */
+  padding-top: 100px;
 }
 
 /* ——————————————
    Header & Nav styling
    —————————————— */
-header {
-  text-align: center;
-}
-
-header img {
-  max-width: 200px;
-  height: auto;
-}
-
-nav {
-  margin: 1rem 0;
-}
-
+header { text-align: center; }
+header img { max-width: 200px; }
+nav { margin: 1rem 0; }
 nav a {
   margin: 0 1.25rem;
   color: #f5f5f5;
@@ -101,11 +84,7 @@ nav a {
   font-weight: 600;
   font-size: 1.1rem;
 }
-
-nav a:hover {
-  text-decoration: underline;
-}
-
+nav a:hover { text-decoration: underline; }
 hr {
   width: 80%;
   margin: 0.5rem auto 1.5rem;
@@ -123,21 +102,16 @@ hr {
   margin: 3rem 0;
   flex-wrap: wrap;
 }
-
 .section img {
   width: 300px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
 .section-text {
   flex: 1;
   min-width: 280px;
 }
-
-h2 {
-  color: #e9f5ec;
-}
+h2 { color: #e9f5ec }
 
 /* ——————————————
    Footer
@@ -152,12 +126,7 @@ footer {
   font-size: 0.9rem;
   border-top: 1px solid rgba(255,255,255,0.2);
 }
-
-footer div {
-  margin: 1rem;
-  min-width: 150px;
-}
-
+footer div { margin: 1rem; min-width: 150px; }
 .social a {
   margin: 0 0.5rem;
   color: #c8dccc;
