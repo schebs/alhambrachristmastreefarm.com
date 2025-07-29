@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  …  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+  <link rel="icon" href="{{ site.baseurl }}/favicon.ico">
 </head>
 <body>
   <header class="site-header">
@@ -16,7 +19,7 @@
   {% include footer.html %}
 
   <script>
-    // when you scroll down 50px, add .scrolled to the header
+    // Toggle opaque class on scroll
     window.addEventListener('scroll', function() {
       document.querySelector('.site-header')
         .classList.toggle('scrolled', window.scrollY > 50);
