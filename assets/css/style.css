@@ -1,5 +1,5 @@
 body {
-  background-color: #fdfcf7;
+  background-color: #f0f9f3;
   font-family: 'Georgia', serif;
   color: #2a2a2a;
   margin: 0;
@@ -8,10 +8,10 @@ body {
 }
 
 main {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   border-radius: 6px;
 }
@@ -32,4 +32,50 @@ nav {
 }
 
 nav a {
-  ma
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #205027;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.section img {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.section-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+h1, h2 {
+  color: #1c4421;
+}
+
+a {
+  color: #2e6f30;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  background: #f2f2f2;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  bord
