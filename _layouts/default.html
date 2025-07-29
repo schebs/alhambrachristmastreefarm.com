@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+  …  
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
 </head>
 <body>
-  {% include header.html %}
+  <header class="site-header">
+    {% include header.html %}
+  </header>
+
   <main>
     {{ content }}
   </main>
+
   {% include footer.html %}
+
+  <script>
+    // when you scroll down 50px, add .scrolled to the header
+    window.addEventListener('scroll', function() {
+      document.querySelector('.site-header')
+        .classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
 </body>
 </html>
