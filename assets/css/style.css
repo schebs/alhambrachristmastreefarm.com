@@ -1,5 +1,9 @@
+/* ----------------------------
+   Base & Background
+---------------------------- */
 body {
-  background-color: #f0f9f3;
+  /* light-to-medium green gradient */
+  background: linear-gradient(to bottom, #e9f5ec, #c8dfcf);
   font-family: 'Georgia', serif;
   color: #2a2a2a;
   margin: 0;
@@ -7,19 +11,23 @@ body {
   line-height: 1.6;
 }
 
+/* white “card” wrapper for all page content */
 main {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 2rem;
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 6px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 8px;
 }
 
+/* ----------------------------
+   Header & Nav
+---------------------------- */
 header {
   text-align: center;
   padding: 1rem 0 0.5rem;
-  background-color: #fff;
+  background: transparent;
 }
 
 header img {
@@ -28,23 +36,34 @@ header img {
 }
 
 nav {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 nav a {
   margin: 0 1rem;
   text-decoration: none;
   font-weight: bold;
-  color: #205027;
+  color: #205027; /* darker pine green */
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #144b27;
 }
 
+/* subtle divider under nav */
+hr {
+  max-width: 600px;
+  margin: 0.75rem auto 1.5rem;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------------------
+   Section Layout
+---------------------------- */
 .section {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
   margin: 3rem 0;
   flex-wrap: wrap;
@@ -62,20 +81,47 @@ nav a:hover {
 }
 
 h1, h2 {
-  color: #1c4421;
+  color: #144b27;
 }
 
+/* ----------------------------
+   Links & Buttons
+---------------------------- */
 a {
   color: #2e6f30;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------------
+   Footer
+---------------------------- */
 footer {
   text-align: center;
   font-size: 0.9rem;
-  background: #f2f2f2;
+  background: rgba(255,255,255,0.9);
   padding: 2rem;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 3rem;
-  bord
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+footer div {
+  margin: 1rem;
+  min-width: 150px;
+}
+
+.social {
+  margin-top: 1rem;
+}
+
+.social a {
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+  color: #205027;
+  text-decoration: none;
+}
