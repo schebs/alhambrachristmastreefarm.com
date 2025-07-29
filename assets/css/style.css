@@ -22,7 +22,8 @@ main {
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('{{ site.baseurl }}/assets/images/hero.jpg') center/cover no-repeat;
+ /* absolute path so CSS doesn’t need Liquid processing */
+  background: url('/alhambra-tree-farm/assets/images/hero.jpg')
   display: flex;
   align-items: center;
   justify-content: center;
