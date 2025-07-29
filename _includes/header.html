@@ -1,7 +1,7 @@
-<header>
+<header style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px;">
   <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Alhambra Valley Logo" style="max-width: 200px;" />
 
-  <nav>
+  <nav style="display: flex; flex-wrap: wrap; gap: 10px; font-weight: bold;">
     <a href="{{ '/' | relative_url }}">Home</a>
     <a href="{{ '/photo-gallery' | relative_url }}">Photo Gallery</a>
     <a href="{{ '/our-trees' | relative_url }}">Our Trees</a>
@@ -9,6 +9,9 @@
     <a href="{{ '/history' | relative_url }}">History</a>
   </nav>
 
-  <div class="social">
+  <div class="social" style="display: flex; gap: 10px; font-size: 0.9em;">
     <a href="https://instagram.com">Instagram</a>
-    <a href="https://facebook.com
+    <a href="https://facebook.com">Facebook</a>
+    <a href="https://tiktok.com">TikTok</a>
+  </div>
+</header>
