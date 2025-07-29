@@ -1,6 +1,6 @@
 title: Alhambra Valley Christmas Tree Farm
 description: A family-run Christmas tree farm serving the Bay Area since 1969.
-baseurl: ""
+baseurl: "/alhambra-tree-farm"
 url: ""
 markdown: kramdown
 theme: minima
