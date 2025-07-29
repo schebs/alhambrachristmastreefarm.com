@@ -1,0 +1,84 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Open Sans', sans-serif;
+  background: linear-gradient(to bottom, #d9f2e6, #b3e6cc);
+  color: #2e5e4e;
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+header img {
+  max-width: 200px;
+  margin-bottom: 1rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #2e5e4e;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.social a {
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+  color: #446e5b;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 2rem;
+  font-size: 0.9rem;
+  color: #2e5e4e;
+  border-top: 1px solid #ccc;
+  margin-top: 4rem;
+}
+
+footer div {
+  margin-bottom: 1rem;
+  min-width: 200px;
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
