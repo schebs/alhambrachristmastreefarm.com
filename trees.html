@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Christmas Trees - Alhambra Valley Christmas Tree Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tree-comparison {
+            background: var(--warm-white);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 5px 25px var(--shadow);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        th {
+            background: var(--forest-green-dark);
+            color: var(--cream);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--cream);
+        }
+
+        .price-highlight {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .tree-features {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background: var(--forest-green-light);
+            color: var(--cream);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .services-section {
+            background: var(--cream);
+            padding: 4rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .size-guide {
+            background: var(--forest-green-dark);
+            color: var(--cream);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .size-option {
+            background: rgba(245, 242, 232, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .size-option h4 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <nav class="nav-left">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="trees.html" class="active">Our Trees</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="logo">
+                    <img src="images/logo.png" alt="Alhambra Valley Christmas Tree Farm Logo" class="logo-img">
+                </div>
+                
+                <nav class="nav-right">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="video.html">Videos</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <nav class="mobile-nav" id="mobileNav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="trees.html" class="active">Our Trees</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="video.html">Videos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero trees-hero" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Christmas Trees</h1>
+                <p class="subtitle">Premium Pre-Cut and U-Cut Varieties</p>
+                <p class="description">
+                    We offer a wide-selection of imported pre-cut trees, and this year have a good 
+                    selection of U-Cut trees. Each tree is selected for quality, freshness, and beauty.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="trees-grid">
+                <div class="tree-card">
+                    <span class="tree-icon">🌲</span>
+                    <h3>Noble Fir</h3>
+                    <div class="tree-features">
+                        <span class="feature-tag">Majestic Beauty</span>
+                        <span class="feature-tag">Rich Fragrance</span>
+                        <span class="feature-tag">Perfect Spacing</span>
+                        <span class="feature-tag">Pre-Cut Only</span>
+                    </div>
+                    <p>
+                        The Noble fir has long been considered the \"King\" of Christmas trees. 
+                        Its majestic beauty, rich fragrance and perfectly spaced branches make it a top seller. 
+                        Quality Noble fir should have a very well-shaped conical form, with regularly 
+                        spaced branches and a smooth taper from bottom to top.
+                    </p>
+                    <div class="price">$12-15 per foot</div>
+                </div>
+
+                <div class="tree-card">
+                    <span class="tree-icon">🌿</span>
+                    <h3>Nordmann Fir</h3>
+                    <div class="tree-features">
+                        <span class="feature-tag">Allergy Friendly</span>
+                        <span class="feature-tag">No Sharp Needles</span>
+                        <span class="feature-tag">Dark Green</span>
+                    </div>
+                    <p>
+                        Perfect for families with allergies or young children. The Nordmann Fir 
+                        has glossy, dark green needles that don't poke and excellent needle 
+                        retention. A European favorite now popular in America.
+                    </p>
+                    <div class="price">$10-13 per foot</div>
+                </div>
+
+                <div class="tree-card">
+                    <span class="tree-icon">⭐</span>
+                    <h3>Silvertip Fir</h3>
+                    <div class="tree-features">
+                        <span class="feature-tag">Silvery Tips</span>
+                        <span class="feature-tag">Strong Branches</span>
+                        <span class="feature-tag">Excellent Retention</span>
+                    </div>
+                    <p>
+                        Beautiful Silvertip Fir with distinctive silvery needle tips that give 
+                        this tree its name. Strong branches support heavy ornaments, and excellent 
+                        needle retention keeps your tree looking fresh all season long.
+                    </p>
+                    <div class="price">Pre-cut available</div>
+                </div>
+
+                <div class="tree-card">
+                    <span class="tree-icon">🌺</span>
+                    <h3>Monterey Pine (U-Cut)</h3>
+                    <div class="tree-features">
+                        <span class="feature-tag">U-Cut Experience</span>
+                        <span class="feature-tag">Fresh Cut</span>
+                        <span class="feature-tag">Family Fun</span>
+                    </div>
+                    <p>
+                        Experience the joy of cutting your own Christmas tree! Our Monterey Pines 
+                        are available for U-cut, providing the authentic Christmas tree farm 
+                        experience. Fresh cut from the field for maximum freshness.
+                    </p>
+                    <div class="price">U-Cut pricing available</div>
+                </div>
+
+                <div class="tree-card">
+                    <span class="tree-icon">🌲</span>
+                    <h3>Douglas Fir</h3>
+                    <div class="tree-features">
+                        <span class="feature-tag">Traditional Choice</span>
+                        <span class="feature-tag">Great Value</span>
+                        <span class="feature-tag">Sweet Scent</span>
+                    </div>
+                    <p>
+                        The traditional Christmas tree choice. Douglas Fir offers good needle 
+                        retention, a sweet fragrance, and excellent value. Flat needles radiate 
+                        in all directions from the branch with a classic Christmas tree shape.
+                    </p>
+                    <div class="price">$7-10 per foot</div>
+                </div>
+            </div>
+
+            <div class="tree-comparison">
+                <div class="section-header">
+                    <h2>Tree Comparison Guide</h2>
+                    <p>Compare our tree varieties to find your perfect match</p>
+                </div>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tree Type</th>
+                                <th>Needle Retention</th>
+                                <th>Branch Strength</th>
+                                <th>Fragrance</th>
+                                <th>Special Features</th>
+                                <th>Price Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Noble Fir</strong></td>
+                                <td>Excellent</td>
+                                <td>Very Strong</td>
+                                <td>Mild</td>
+                                <td>Best for heavy ornaments</td>
+                                <td>$12-15/ft</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nordmann Fir</strong></td>
+                                <td>Excellent</td>
+                                <td>Good</td>
+                                <td>Little to none</td>
+                                <td>Allergy friendly, no poke</td>
+                                <td>$10-13/ft</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Silvertip Fir</strong></td>
+                                <td>Excellent</td>
+                                <td>Strong</td>
+                                <td>Pleasant</td>
+                                <td>Silvery needle tips, premium quality</td>
+                                <td>Pre-cut</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Monterey Pine</strong></td>
+                                <td>Good</td>
+                                <td>Moderate</td>
+                                <td>Mild</td>
+                                <td>U-Cut experience, fresh from field</td>
+                                <td>U-Cut</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Douglas Fir</strong></td>
+                                <td>Good</td>
+                                <td>Moderate</td>
+                                <td>Sweet</td>
+                                <td>Traditional choice, great value</td>
+                                <td>$7-10/ft</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="size-guide">
+                <div class="section-header" style="color: var(--cream);">
+                    <h2>Size Guide</h2>
+                    <p>Choose the perfect size for your space</p>
+                </div>
+                <div class="size-options">
+                    <div class="size-option">
+                        <h4>4-5 Feet</h4>
+                        <p>Perfect for tabletops, apartments, or small spaces. Great for children's rooms or as a second tree.</p>
+                    </div>
+                    <div class="size-option">
+                        <h4>6-7 Feet</h4>
+                        <p>Most popular size for average homes. Fits well in rooms with 8-9 foot ceilings with space for a tree topper.</p>
+                    </div>
+                    <div class="size-option">
+                        <h4>8-9 Feet</h4>
+                        <p>Impressive size for larger rooms and high ceilings. Makes a stunning centerpiece for your holiday decor.</p>
+                    </div>
+                    <div class="size-option">
+                        <h4>10+ Feet</h4>
+                        <p>Grand statement trees for large spaces, vaulted ceilings, or commercial displays. Available by special order.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Full Service Experience</h2>
+                <p>We make getting your perfect tree easy and enjoyable</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">🪚</div>
+                    <h4>Fresh Cut</h4>
+                    <p>Cut your own from our fields or choose from our fresh pre-cut selection</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🕸️</div>
+                    <h4>Tree Netting</h4>
+                    <p>Every tree is netted for easy transport and setup at home</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🚗</div>
+                    <h4>Loading Assistance</h4>
+                    <p>We'll help load your tree securely onto your vehicle</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🌿</div>
+                    <h4>Fresh Wreaths</h4>
+                    <p>Beautiful wreaths and garland to complete your holiday decorating</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🎁</div>
+                    <h4>Local Artisan Goods</h4>
+                    <p>Locally made ornaments, honey, and soap available for purchase</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💡</div>
+                    <h4>Expert Advice</h4>
+                    <p>55 years of experience to help you choose the perfect tree</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-info">
+        <div class="container">
+            <div class="section-header" style="color: var(--cream);">
+                <h2>Ready to Find Your Tree?</h2>
+                <p>Visit us this season for the freshest trees and warmest service</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>📍 Location</h4>
+                    <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
+                </div>
+                <div class="contact-item">
+                    <h4>📞 Phone</h4>
+                    <p><a href="tel:+19253727274">(925) 372-7274</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>🕒 Season Hours</h4>
+                    <p>Monday-Friday: 1:00 PM - 7:00 PM<br>
+                    Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
+                </div>
+                <div class="contact-item">
+                    <h4>💳 Payment</h4>
+                    <p>Cash, Check, and Credit Cards Accepted<br>
+                    Venmo and PayPal Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Alhambra Valley Christmas Tree Farm</h4>
+                    <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
+                    <p>Phone: <a href="tel:+19253727274">(925) 372-7274</a></p>
+                    <p>Email: <a href="mailto:info@alhambrachristmastreefarm.com">info@alhambrachristmastreefarm.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Season Information</h4>
+                    <p>Monday-Friday: 1:00 PM - 7:00 PM</p>
+                    <p>Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Trees</h4>
+                    <p>Noble Fir • Nordmann Fir<br>
+                    Douglas Fir • Silvertip<br>
+                    U-Cut Monterey Pine</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Alhambra Valley Christmas Tree Farm. Family owned and operated since 1969.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScrollTop = scrollTop;
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('section, .tree-card, .service-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

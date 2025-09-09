@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos - Alhambra Valley Christmas Tree Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .video-card {
+            background: var(--warm-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 35px var(--shadow-medium);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--forest-green-light), var(--forest-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-thumbnail:hover {
+            background: linear-gradient(135deg, var(--forest-green), var(--forest-green-dark));
+        }
+
+        .play-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(245, 242, 232, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--forest-green-dark);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-thumbnail:hover .play-button {
+            background: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .video-content {
+            padding: 2rem;
+        }
+
+        .video-content h3 {
+            color: var(--forest-green-dark);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .video-content p {
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--cream-dark);
+            padding-top: 1rem;
+        }
+
+        .featured-video {
+            grid-column: 1 / -1;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .featured-video .video-thumbnail {
+            height: 400px;
+        }
+
+        .categories-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-filter {
+            background: var(--cream-dark);
+            border: 2px solid var(--forest-green);
+            color: var(--forest-green-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .category-filter.active,
+        .category-filter:hover {
+            background: var(--forest-green);
+            color: var(--cream);
+        }
+
+        .social-links {
+            background: var(--cream);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--warm-white);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            box-shadow: 0 3px 15px var(--shadow);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px var(--shadow-medium);
+            color: var(--forest-green-dark);
+        }
+
+        .social-icon {
+            font-size: 1.8rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: var(--warm-white);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--cream);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <nav class="nav-left">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="trees.html">Our Trees</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="logo">
+                    <img src="images/logo.png" alt="Alhambra Valley Christmas Tree Farm Logo" class="logo-img">
+                </div>
+                
+                <nav class="nav-right">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="video.html" class="active">Videos</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <nav class="mobile-nav" id="mobileNav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="trees.html">Our Trees</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="video.html" class="active">Videos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero video-hero" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Farm Videos</h1>
+                <p class="subtitle">Experience Our Farm Through Video</p>
+                <p class="description">
+                    Take a virtual tour of our beautiful 10-acre farm, meet the Scheberies family, 
+                    and see what makes Alhambra Valley Christmas Tree Farm so special.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="categories-filter">
+                <button class="category-filter active" data-category="all">All Videos</button>
+                <button class="category-filter" data-category="tour">Farm Tours</button>
+                <button class="category-filter" data-category="family">Meet the Family</button>
+                <button class="category-filter" data-category="trees">Our Trees</button>
+                <button class="category-filter" data-category="seasonal">Seasonal</button>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card featured-video" data-category="tour">
+                    <div class="video-thumbnail" data-video="farm-tour">
+                        <div class="play-button">▶</div>
+                        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; text-align: center;">
+                            <h3 style="color: var(--cream); margin: 0;">Welcome to Alhambra Valley</h3>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Complete Farm Tour</h3>
+                        <p>
+                            Take a comprehensive tour of our 10-acre Christmas tree farm with the Scheberies family. 
+                            See our different tree varieties, learn about our growing process, and discover what 
+                            makes our farm special.
+                        </p>
+                        <div class="video-meta">
+                            <span>Featured Video</span>
+                            <span>8:45</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="family">
+                    <div class="video-thumbnail" data-video="meet-family">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Meet the Scheberies Family</h3>
+                        <p>
+                            Get to know Mark, Bea, Wyatt, and Ellie Scheberies. Learn about our family's 
+                            55-year journey and what drives our passion for growing Christmas trees.
+                        </p>
+                        <div class="video-meta">
+                            <span>Family Stories</span>
+                            <span>5:20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="trees">
+                    <div class="video-thumbnail" data-video="noble-fir">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Noble Fir: The Premium Choice</h3>
+                        <p>
+                            Discover why Noble Fir is considered the premium Christmas tree. Learn about 
+                            its unique characteristics, growing requirements, and why it's perfect for heavy ornaments.
+                        </p>
+                        <div class="video-meta">
+                            <span>Tree Education</span>
+                            <span>3:15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="seasonal">
+                    <div class="video-thumbnail" data-video="cutting-season">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Christmas Tree Cutting Season</h3>
+                        <p>
+                            Experience the excitement of Christmas tree cutting season! See families 
+                            selecting their perfect trees and the joy of continuing holiday traditions.
+                        </p>
+                        <div class="video-meta">
+                            <span>Seasonal Highlight</span>
+                            <span>4:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="trees">
+                    <div class="video-thumbnail" data-video="tree-care">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>How We Grow Our Trees</h3>
+                        <p>
+                            Go behind the scenes to see our sustainable growing practices. From planting 
+                            to harvesting, learn about the care that goes into every tree.
+                        </p>
+                        <div class="video-meta">
+                            <span>Educational</span>
+                            <span>6:10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="family">
+                    <div class="video-thumbnail" data-video="wyatt-ellie">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Next Generation: Wyatt & Ellie</h3>
+                        <p>
+                            Meet the newest generation of Scheberies family members and learn how they're 
+                            continuing family traditions while bringing fresh ideas to the farm.
+                        </p>
+                        <div class="video-meta">
+                            <span>Family Legacy</span>
+                            <span>4:45</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="tour">
+                    <div class="video-thumbnail" data-video="virtual-walk">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Virtual Walk Through the Farm</h3>
+                        <p>
+                            Can't visit in person right now? Take a peaceful virtual walk through our 
+                            tree fields and see the beauty of our farm in every season.
+                        </p>
+                        <div class="video-meta">
+                            <span>Virtual Tour</span>
+                            <span>7:20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="seasonal">
+                    <div class="video-thumbnail" data-video="wreath-making">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Fresh Wreath Making</h3>
+                        <p>
+                            Watch our team create beautiful fresh wreaths and garland from our own trees. 
+                            See the craftsmanship that goes into every holiday decoration we make.
+                        </p>
+                        <div class="video-meta">
+                            <span>Craftsmanship</span>
+                            <span>3:40</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-category="trees">
+                    <div class="video-thumbnail" data-video="tree-varieties">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Comparing Tree Varieties</h3>
+                        <p>
+                            Not sure which tree variety is right for you? Watch this comparison of all 
+                            our tree types to find your perfect match.
+                        </p>
+                        <div class="video-meta">
+                            <span>Tree Guide</span>
+                            <span>5:55</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-links">
+        <div class="container">
+            <div class="section-header">
+                <h2>Follow Us for More Content</h2>
+                <p>Stay connected for the latest farm updates, seasonal content, and behind-the-scenes videos</p>
+            </div>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/alhambrachristmastreefarm" target="_blank" class="social-link">
+                    <span class="social-icon">📷</span>
+                    <div>
+                        <strong>Instagram</strong><br>
+                        @alhambrachristmastreefarm
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/AlhambraChristmasTreeFarm" target="_blank" class="social-link">
+                    <span class="social-icon">📘</span>
+                    <div>
+                        <strong>Facebook</strong><br>
+                        AlhambraChristmasTreeFarm
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@alhambraxmastreefarm" target="_blank" class="social-link">
+                    <span class="social-icon">🎵</span>
+                    <div>
+                        <strong>TikTok</strong><br>
+                        @alhambraxmastreefarm
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="video-container">
+                <div style="background: var(--forest-green-dark); height: 450px; display: flex; align-items: center; justify-content: center; color: var(--cream); font-size: 1.2rem;">
+                    Video Player Placeholder<br>
+                    <small>(Future implementation with actual video content)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Alhambra Valley Christmas Tree Farm</h4>
+                    <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
+                    <p>Phone: <a href="tel:+19253727274">(925) 372-7274</a></p>
+                    <p>Email: <a href="mailto:info@alhambrachristmastreefarm.com">info@alhambrachristmastreefarm.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Season Information</h4>
+                    <p>Monday-Friday: 1:00 PM - 7:00 PM</p>
+                    <p>Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Trees</h4>
+                    <p>Noble Fir • Nordmann Fir<br>
+                    Douglas Fir • Silvertip<br>
+                    U-Cut Monterey Pine</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Alhambra Valley Christmas Tree Farm. Family owned and operated since 1969.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScrollTop = scrollTop;
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Video category filtering
+        document.querySelectorAll('.category-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.category-filter').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter videos
+                const category = this.getAttribute('data-category');
+                const videos = document.querySelectorAll('.video-card');
+                
+                videos.forEach(video => {
+                    if (category === 'all' || video.getAttribute('data-category') === category) {
+                        video.style.display = 'block';
+                        setTimeout(() => {
+                            video.style.opacity = '1';
+                            video.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        video.style.opacity = '0';
+                        video.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            video.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Video modal functionality
+        const modal = document.getElementById('videoModal');
+        const modalClose = document.getElementById('modalClose');
+
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video');
+                // Future implementation: load actual video content
+                modal.classList.add('active');
+                console.log('Playing video:', videoId);
+            });
+        });
+
+        modalClose.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe video cards
+        document.querySelectorAll('.video-card').forEach(el => {
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

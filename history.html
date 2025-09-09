@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our History - Alhambra Valley Christmas Tree Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--forest-green), var(--accent-gold));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 3rem 0;
+            width: 45%;
+            padding: 2rem;
+            background: var(--warm-white);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-medium);
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gold);
+            border: 4px solid var(--forest-green-dark);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-item.left::before {
+            right: -37px;
+        }
+
+        .timeline-item.right::before {
+            left: -37px;
+        }
+
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--forest-green-dark);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        .legacy-stats {
+            background: var(--forest-green-dark);
+            color: var(--cream);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--cream-dark);
+        }
+
+        .photo-memories {
+            padding: 5rem 0;
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .memory-card {
+            background: var(--warm-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 35px var(--shadow-medium);
+        }
+
+        .memory-image {
+            height: 250px;
+            background: var(--forest-green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .memory-content {
+            padding: 2rem;
+        }
+
+        .memory-content h4 {
+            color: var(--forest-green-dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 80px);
+                left: 60px !important;
+            }
+
+            .timeline-item::before {
+                left: -37px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <nav class="nav-left">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="trees.html">Our Trees</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="logo">
+                    <img src="images/logo.png" alt="Alhambra Valley Christmas Tree Farm Logo" class="logo-img">
+                </div>
+                
+                <nav class="nav-right">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html" class="active">History</a></li>
+                        <li><a href="video.html">Videos</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <nav class="mobile-nav" id="mobileNav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="trees.html">Our Trees</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html" class="active">History</a></li>
+                        <li><a href="video.html">Videos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero history-hero" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>55 Years of Christmas Magic</h1>
+                <p class="subtitle">A Journey Through Five Decades of Holiday Traditions</p>
+                <p class="description">
+                    From humble beginnings in 1969 to becoming a beloved Bay Area destination, 
+                    discover the rich history of Alhambra Valley Christmas Tree Farm and the 
+                    Scheberies family's dedication to creating perfect holiday memories.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="legacy-stats">
+        <div class="container">
+            <div class="section-header" style="color: var(--cream);">
+                <h2>Our Legacy in Numbers</h2>
+                <p>Over five decades of service to the Bay Area community</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">55+</span>
+                    <span class="stat-label">Years in Business</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Acres of Beautiful Trees</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Premium Tree Varieties</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Dedicated Founders</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000s</span>
+                    <span class="stat-label">Happy Families Served</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 5rem 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Journey Through Time</h2>
+                <p>Milestones in the Alhambra Valley Christmas Tree Farm story</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-year">1969</div>
+                    <div class="timeline-content">
+                        <h3>The Dream Begins</h3>
+                        <p>
+                            Mark and Bea Scheberies purchase 10 acres in Martinez's beautiful Alhambra Valley 
+                            with a vision to create a place where families can experience the joy of selecting 
+                            and cutting their own Christmas trees. The first trees are planted with hope and 
+                            determination.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-year">1975</div>
+                    <div class="timeline-content">
+                        <h3>First Harvest</h3>
+                        <p>
+                            After years of careful cultivation, the first Christmas trees are ready for harvest. 
+                            Local families discover this hidden gem in Alhambra Valley, and word begins to spread 
+                            about the quality trees and warm hospitality.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-year">1980s</div>
+                    <div class="timeline-content">
+                        <h3>Growing Recognition</h3>
+                        <p>
+                            The farm gains recognition throughout the Bay Area for its premium Noble Fir and 
+                            other varieties. The personal service and quality trees make Alhambra Valley a 
+                            must-visit destination for holiday tree shopping.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-year">1990s</div>
+                    <div class="timeline-content">
+                        <h3>Continued Excellence</h3>
+                        <p>
+                            Mark and Bea continue to expand their knowledge and improve their farming techniques, 
+                            consistently delivering the highest quality trees. Their reputation for excellence 
+                            spreads throughout the Bay Area community.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-year">2000s</div>
+                    <div class="timeline-content">
+                        <h3>Sustainable Practices</h3>
+                        <p>
+                            The farm implements sustainable growing practices, showing commitment to 
+                            environmental stewardship. New tree varieties are added to provide customers 
+                            with more options while maintaining the highest quality standards.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-year">2010s</div>
+                    <div class="timeline-content">
+                        <h3>Community Connection</h3>
+                        <p>
+                            The farm deepens its community involvement, hiring local students and 
+                            supporting community events. Social media helps share the farm's story 
+                            with a new generation of families.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-year">2020s</div>
+                    <div class="timeline-content">
+                        <h3>Continuing Legacy</h3>
+                        <p>
+                            Mark and Bea continue to personally oversee the farm operations, maintaining 
+                            the same traditions and commitment to quality that have made Alhambra Valley 
+                            special for over five decades. Their dedication remains as strong as ever.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Looking Forward</h3>
+                        <p>
+                            As we celebrate 55 years of serving the Bay Area, we continue to innovate 
+                            while honoring our roots. New website, same family values - creating 
+                            perfect Christmas memories for generations to come.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="photo-memories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Memories Through the Decades</h2>
+                <p>Capturing moments that define our journey</p>
+            </div>
+            <div class="memories-grid">
+                <div class="memory-card">
+                    <div class="memory-image">
+                        [Historical Photo - 1970s]<br>
+                        Mark and Bea with their first crop
+                    </div>
+                    <div class="memory-content">
+                        <h4>The Early Years</h4>
+                        <p>Mark and Bea Scheberies with their first successful Christmas tree crop in the mid-1970s, proud of their flourishing dream.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-image">
+                        [Historical Photo - 1980s]<br>
+                        First customer families
+                    </div>
+                    <div class="memory-content">
+                        <h4>Building Traditions</h4>
+                        <p>Local families beginning their annual tradition of visiting Alhambra Valley for the perfect Christmas tree.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-image">
+                        [Historical Photo - 1990s]<br>
+                        Young Wyatt and Ellie helping
+                    </div>
+                    <div class="memory-content">
+                        <h4>Next Generation</h4>
+                        <p>Young Wyatt and Ellie learning the family business, carrying on traditions while bringing fresh perspectives.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-image">
+                        [Historical Photo - 2000s]<br>
+                        Farm expansion and improvements
+                    </div>
+                    <div class="memory-content">
+                        <h4>Growing and Improving</h4>
+                        <p>Continuous improvements to the farm facilities and tree varieties to better serve our growing customer family.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-image">
+                        [Historical Photo - 2010s]<br>
+                        Community events
+                    </div>
+                    <div class="memory-content">
+                        <h4>Community Connection</h4>
+                        <p>Participating in local Martinez events and building stronger connections with the Bay Area community.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-image">
+                        [Current Photo - 2020s]<br>
+                        Four generations together
+                    </div>
+                    <div class="memory-content">
+                        <h4>Family Legacy</h4>
+                        <p>Four generations of the Scheberies family working together to continue 55 years of Christmas tree excellence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Alhambra Valley Christmas Tree Farm</h4>
+                    <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
+                    <p>Phone: <a href="tel:+19253727274">(925) 372-7274</a></p>
+                    <p>Email: <a href="mailto:info@alhambrachristmastreefarm.com">info@alhambrachristmastreefarm.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Season Information</h4>
+                    <p>Monday-Friday: 1:00 PM - 7:00 PM</p>
+                    <p>Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Trees</h4>
+                    <p>Noble Fir • Nordmann Fir<br>
+                    Douglas Fir • Silvertip<br>
+                    U-Cut Monterey Pine</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Alhambra Valley Christmas Tree Farm. Family owned and operated since 1969.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScrollTop = scrollTop;
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Timeline animation
+        const timelineObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Animate timeline items
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(50px)';
+            item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            timelineObserver.observe(item);
+        });
+
+        // Counter animation
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start) + (target > 100 ? '+' : '');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + (target > 100 ? '+' : '');
+                }
+            }
+            updateCounter();
+        }
+
+        // Animate stat numbers when they come into view
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const number = entry.target.textContent.replace('+', '').replace('s', '');
+                    if (!isNaN(number)) {
+                        animateCounter(entry.target, parseInt(number));
+                    }
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.8 });
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>

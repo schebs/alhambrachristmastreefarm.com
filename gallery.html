@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Alhambra Valley Christmas Tree Farm</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--forest-green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(30, 58, 46, 0.8));
+            color: var(--cream);
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--cream-dark);
+            border: 2px solid var(--forest-green);
+            color: var(--forest-green-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--forest-green);
+            color: var(--cream);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <nav class="nav-left">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html" class="active">Photo Gallery</a></li>
+                        <li><a href="trees.html">Our Trees</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="logo">
+                    <img src="images/logo.png" alt="Alhambra Valley Christmas Tree Farm Logo" class="logo-img">
+                </div>
+                
+                <nav class="nav-right">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="video.html">Videos</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <nav class="mobile-nav" id="mobileNav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gallery.html" class="active">Photo Gallery</a></li>
+                        <li><a href="trees.html">Our Trees</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="video.html">Videos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero gallery-hero" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Photo Gallery</h1>
+                <p class="subtitle">Capturing 55 Years of Holiday Magic</p>
+                <p class="description">
+                    Browse through decades of memories, from our beautiful trees and farm 
+                    to the countless families who have made us part of their holiday traditions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="categories">
+                <button class="category-btn active" data-category="all">All Photos</button>
+                <button class="category-btn" data-category="trees">Our Trees</button>
+                <button class="category-btn" data-category="farm">The Farm</button>
+                <button class="category-btn" data-category="family">Family & Customers</button>
+                <button class="category-btn" data-category="seasonal">Seasonal Moments</button>
+                <button class="category-btn" data-category="history">Through the Years</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" data-category="trees">
+                    <div>
+                        <h3>Premium Noble Fir</h3>
+                        <p>Our signature Noble Fir trees, known for their sturdy branches and excellent needle retention</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Noble Fir Collection</h4>
+                        <p>Perfect for heavy ornaments with beautiful blue-green color</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="farm">
+                    <div>
+                        <h3>10-Acre Farm</h3>
+                        <p>Our beautiful 10-acre property in the heart of Martinez's Alhambra Valley</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Farm Overview</h4>
+                        <p>Nestled in the scenic Alhambra Valley since 1969</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="family">
+                    <div>
+                        <h3>The Scheberies Family</h3>
+                        <p>Mark, Bea, Wyatt, and Ellie - four generations continuing the tradition</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Family Legacy</h4>
+                        <p>Four generations of dedication to quality and service</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="trees">
+                    <div>
+                        <h3>Fraser Fir</h3>
+                        <p>The "Cadillac of Christmas Trees" with excellent needle retention and strong branches</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Fraser Fir</h4>
+                        <p>Known as the Cadillac of Christmas trees</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="seasonal">
+                    <div>
+                        <h3>Fresh Cut Service</h3>
+                        <p>Watch as we cut your perfect tree fresh from the field</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Cut Your Own Experience</h4>
+                        <p>Fresh cut trees for the ultimate Christmas experience</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="family">
+                    <div>
+                        <h3>Happy Customers</h3>
+                        <p>Families creating memories that last a lifetime</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Customer Joy</h4>
+                        <p>Making holiday memories since 1969</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="trees">
+                    <div>
+                        <h3>Nordmann Fir</h3>
+                        <p>Excellent for families with allergies - no needles to poke or shed</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Nordmann Fir</h4>
+                        <p>Perfect for families with needle allergies</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="farm">
+                    <div>
+                        <h3>Tree Netting Service</h3>
+                        <p>We net every tree for easy transport and setup at home</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Full Service</h4>
+                        <p>Netting and loading included with every tree</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="history">
+                    <div>
+                        <h3>1969 - The Beginning</h3>
+                        <p>Mark and Bea starting their dream of a family Christmas tree farm</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Our Beginning</h4>
+                        <p>From a dream in 1969 to a beloved tradition</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="seasonal">
+                    <div>
+                        <h3>Holiday Wreaths</h3>
+                        <p>Fresh wreaths and garland made from our own trees</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Holiday Decorations</h4>
+                        <p>Fresh wreaths and garland available</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="trees">
+                    <div>
+                        <h3>Grand Fir</h3>
+                        <p>Beautiful flat needles with excellent fragrance</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Grand Fir</h4>
+                        <p>Glossy green with amazing Christmas fragrance</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="history">
+                    <div>
+                        <h3>Growing Through the Decades</h3>
+                        <p>55 years of growth, from small family farm to Bay Area destination</p>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Five Decades Strong</h4>
+                        <p>Growing stronger with each passing season</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Alhambra Valley Christmas Tree Farm</h4>
+                    <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
+                    <p>Phone: <a href="tel:+19253727274">(925) 372-7274</a></p>
+                    <p>Email: <a href="mailto:info@alhambrachristmastreefarm.com">info@alhambrachristmastreefarm.com</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Season Information</h4>
+                    <p>Monday-Friday: 1:00 PM - 7:00 PM</p>
+                    <p>Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Trees</h4>
+                    <p>Noble Fir • Nordmann Fir<br>
+                    Douglas Fir • Silvertip<br>
+                    U-Cut Monterey Pine</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Alhambra Valley Christmas Tree Farm. Family owned and operated since 1969.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScrollTop = scrollTop;
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        });
+
+        // Gallery filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter gallery items
+                const category = this.getAttribute('data-category');
+                const items = document.querySelectorAll('.gallery-item');
+                
+                items.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'flex';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality (placeholder for future image implementation)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Future: implement lightbox with actual images
+                console.log('Gallery item clicked:', this.querySelector('h3').textContent);
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe gallery items
+        document.querySelectorAll('.gallery-item').forEach(el => {
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
