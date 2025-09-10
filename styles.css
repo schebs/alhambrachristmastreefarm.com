@@ -55,6 +55,13 @@ header.scrolled {
   box-shadow: 0 2px 20px var(--shadow);
 }
 
+/* Semi-transparent header for pages without hero sections */
+.no-hero-page header {
+  background: rgba(30, 58, 46, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px var(--shadow);
+}
+
 .header-content {
   display: flex;
   justify-content: space-between;
