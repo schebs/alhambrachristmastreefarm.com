@@ -97,8 +97,8 @@ header.scrolled {
 }
 
 .logo-img {
-  height: 75px;
-  width: 75px;
+  height: 80px;
+  width: 80px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
@@ -192,7 +192,7 @@ header.scrolled .nav-right a.active {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(ellipse at center, transparent 20%, rgba(30, 58, 46, 0.1) 40%, rgba(30, 58, 46, 0.4) 70%, rgba(30, 58, 46, 0.7) 100%);
+    radial-gradient(ellipse at center, transparent 20%, rgba(30, 58, 46, 0.12) 40%, rgba(30, 58, 46, 0.45) 70%, rgba(30, 58, 46, 0.75) 100%);
   z-index: 1;
 }
 
@@ -273,11 +273,11 @@ header.scrolled .nav-right a.active {
   z-index: 2;
   animation: fadeInUp 1s ease-out;
   width: 100%;
-  margin-top: 80px;
-  padding: 2rem 3rem 3rem;
+  margin-top: 70px;
+  padding: 1rem 2rem 1.5rem;
   backdrop-filter: blur(2px);
   background: rgba(30, 58, 46, 0.15);
-  border-radius: 20px;
+  border-radius: 15px;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -664,7 +664,7 @@ footer {
   
   .hero-content {
     margin-top: 60px;
-    padding: 1.5rem 2rem 2rem;
+    padding: 1rem 1.5rem 1.5rem;
     max-width: 95%;
   }
   
