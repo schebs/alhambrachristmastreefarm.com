@@ -86,11 +86,70 @@
             line-height: 1.6;
         }
 
+        .timeline-image {
+            position: relative;
+            margin: -30rem 0 15rem 0;
+            width: 45%;
+            padding: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-medium);
+        }
+
+        .timeline-image.left {
+            left: 0;
+        }
+
+        .timeline-image.right {
+            left: 55%;
+        }
+
+        .timeline-image::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gold);
+            border: 4px solid var(--forest-green-dark);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-image.left::before {
+            right: -37px;
+        }
+
+        .timeline-image.right::before {
+            left: -37px;
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
         .legacy-stats {
             background: var(--forest-green-dark);
             color: var(--cream);
             padding: 4rem 0;
             text-align: center;
+        }
+
+        .legacy-stats h2 {
+            color: var(--cream);
+        }
+
+        .legacy-stats p {
+            color: var(--cream);
         }
 
         .stats-grid {
@@ -114,7 +173,7 @@
 
         .stat-label {
             font-size: 1.1rem;
-            color: var(--cream-dark);
+            color: var(--cream);
         }
 
         .photo-memories {
@@ -163,23 +222,27 @@
             font-size: 1.3rem;
         }
 
+        .hero.history-hero {
+            background-image: url('images/griffin.jpg');
+        }
+
         @media (max-width: 768px) {
             .timeline::before {
                 left: 30px;
             }
 
-            .timeline-item {
+            .timeline-item, .timeline-image {
                 width: calc(100% - 80px);
                 left: 60px !important;
             }
 
-            .timeline-item::before {
+            .timeline-item::before, .timeline-image::before {
                 left: -37px !important;
             }
         }
     </style>
 </head>
-<body>
+<body class="no-hero-page">
     <header>
         <div class="container">
             <div class="header-content">
@@ -218,7 +281,8 @@
         </div>
     </header>
 
-    <section class="hero history-hero" style="padding: 4rem 0;">
+
+    <section class="hero history-hero">
         <div class="container">
             <div class="hero-content">
                 <h1>55 Years of Christmas Magic</h1>
@@ -285,6 +349,10 @@
                     </div>
                 </div>
 
+                <div class="timeline-image right">
+                    <img src="images/1868.jpg" alt="Historical photo from 1868 - The Griffin family farm establishment">
+                </div>
+
                 <div class="timeline-item right">
                     <div class="timeline-year">1914</div>
                     <div class="timeline-content">
@@ -300,6 +368,10 @@
                     </div>
                 </div>
 
+                <div class="timeline-image left">
+                    <img src="images/1914.jpg" alt="Historical photo from 1914 - John Muir era in Alhambra Valley">
+                </div>
+
                 <div class="timeline-item left">
                     <div class="timeline-year">1969</div>
                     <div class="timeline-content">
@@ -310,6 +382,10 @@
                             family to grow Christmas Trees on the property. This successful partnership lasted for 45 years.
                         </p>
                     </div>
+                </div>
+
+                <div class="timeline-image right">
+                    <img src="images/1969.jpg" alt="Historical photo from 1969 - Beginning of Christmas tree farming">
                 </div>
 
                 <div class="timeline-item right">
@@ -326,6 +402,10 @@
                     </div>
                 </div>
 
+                <div class="timeline-image left">
+                    <img src="images/2010-2013.jpg" alt="Historical photo from 2010-2013 - Period of change">
+                </div>
+
                 <div class="timeline-item left">
                     <div class="timeline-year">2014</div>
                     <div class="timeline-content">
@@ -340,6 +420,10 @@
                             children, Wyatt and Ellie, who assist when academic obligations permit.
                         </p>
                     </div>
+                </div>
+
+                <div class="timeline-image right">
+                    <img src="images/2014.jpg" alt="Historical photo from 2014 - Scheberies family takes over">
                 </div>
             </div>
         </div>
@@ -479,8 +563,8 @@
             });
         }, { threshold: 0.3 });
 
-        // Animate timeline items
-        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+        // Animate timeline items and images
+        document.querySelectorAll('.timeline-item, .timeline-image').forEach((item, index) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(50px)';
             item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;

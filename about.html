@@ -39,6 +39,15 @@
             color: var(--cream);
             font-size: 2.5rem;
             border: 4px solid var(--accent-gold);
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transform: scale(1.5);
         }
 
         .member-name {
@@ -115,7 +124,7 @@
             border-bottom: 1px solid rgba(245, 242, 232, 0.2);
             position: relative;
             padding-left: 2rem;
-            color: var(--text-dark);
+            color: var(--cream);
         }
 
         .sustainability-practices li::before {
@@ -160,7 +169,7 @@
         }
     </style>
 </head>
-<body>
+<body class="no-hero-page">
     <header>
         <div class="container">
             <div class="header-content">
@@ -199,21 +208,8 @@
         </div>
     </header>
 
-    <section class="hero about-hero" style="padding: 4rem 0;">
-        <div class="container">
-            <div class="hero-content">
-                <h1>About Our Family Farm</h1>
-                <p class="subtitle">Over 55 Years of Christmas Magic Since 1969</p>
-                <p class="description">
-                    The Alhambra Christmas Tree Farm is a family-owned business where Mark, Bea and their 
-                    children Wyatt and Ellie have been creating unforgettable holiday experiences for 
-                    families throughout the Bay Area.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <section>
+    <section style="padding-top: 8rem;">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
@@ -255,7 +251,9 @@
             </div>
             <div class="family-members">
                 <div class="family-member">
-                    <div class="member-photo">M&B</div>
+                    <div class="member-photo">
+                        <img src="images/beamark.jpg" alt="Mark and Bea Scheberies">
+                    </div>
                     <h4 class="member-name">The Scheberies Family</h4>
                     <p class="member-role">Mark, Bea, Wyatt & Ellie</p>
                     <p>
@@ -266,7 +264,9 @@
                     </p>
                 </div>
                 <div class="family-member">
-                    <div class="member-photo">🌲</div>
+                    <div class="member-photo">
+                        <img src="images/farm1.jpg" alt="Christmas trees at Alhambra Valley">
+                    </div>
                     <h4 class="member-name">Our Legacy</h4>
                     <p class="member-role">Growing Excellence Since 1969</p>
                     <p>
