@@ -79,9 +79,103 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Footer spacing adjustments */
+        .footer-content {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr 1.2fr 1fr !important;
+            gap: 2rem !important;
+        }
+
+        /* Tree section revamp - Dynamic responsive grid */
+        .trees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 580px) {
+            .trees-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .tree-card {
+            display: flex;
+            gap: 2rem;
+            background: var(--warm-white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 25px var(--shadow);
+            transition: all 0.3s ease;
+            align-items: flex-start;
+        }
+
+        .tree-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-medium);
+        }
+
+        .tree-image {
+            flex-shrink: 0;
+            width: 220px;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .tree-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tree-content {
+            flex: 1;
+        }
+
+        .tree-content h3 {
+            color: var(--forest-green-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tree-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tree-image {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
         }
 
         .service-item {
@@ -170,94 +264,114 @@
                 <h1>Our Christmas Trees</h1>
                 <p>We are proud to offer a wide variety of Pre-Cut and U-Cut trees</p>
             </div>
-            <div class="section-header">
-                <h2>Our Trees</h2>
-                <p>Premium trees available pre-cut and choose & cut options</p>
-            </div>
             <div class="trees-grid">
                 <div class="tree-card">
-                    <span class="tree-icon">🌲</span>
-                    <h3>Noble Fir</h3>
-                    <div class="tree-features">
-                        <span class="availability-tag">Pre-Cut</span>
-                        <span class="feature-tag">Best Needle Retention</span>
-                        <span class="feature-tag">Stiff Branches</span>
-                        <span class="feature-tag">Blue-Green Needles</span>
+                    <div class="tree-image">
+                        <img src="images/noble.jpg" alt="Noble Fir Christmas Tree">
                     </div>
-                    <p>
-                        Noble in name and stature, this stately tree features short, blue-green needles. The Noble fir has some of the best needle retention among Christmas tree species, with stiff branches and an attractive form to handle heavy ornaments. You'll also find it used as greenery for wreaths and garland.
-                    </p>
+                    <div class="tree-content">
+                        <h3>Noble Fir</h3>
+                        <div class="tree-features">
+                            <span class="availability-tag">Pre-Cut</span>
+                            <span class="feature-tag">Best Needle Retention</span>
+                            <span class="feature-tag">Stiff Branches</span>
+                            <span class="feature-tag">Blue-Green Needles</span>
+                        </div>
+                        <p>
+                            Noble in name and stature, this stately tree features short, blue-green needles. The Noble fir has some of the best needle retention among Christmas tree species, with stiff branches and an attractive form to handle heavy ornaments. You'll also find it used as greenery for wreaths and garland.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="tree-card">
-                    <span class="tree-icon">🌿</span>
-                    <h3>Nordmann Fir</h3>
-                    <div class="tree-features">
-                        <span class="availability-tag">Pre-Cut</span>
-                        <span class="feature-tag">Allergy Friendly</span>
-                        <span class="feature-tag">No Fragrance</span>
-                        <span class="feature-tag">Dark Green</span>
+                    <div class="tree-image">
+                        <img src="images/nordmann.jpg" alt="Nordmann Fir Christmas Tree">
                     </div>
-                    <p>
-                        Darker than almost any other fir, the Nordmann fir features glossy, dark green needles and excellent needle retention. The structure presents in a layered or tiered fashion, with sturdy branches for displaying ornaments. This tree has very little or almost no fragrance, making it a great option for those who may be sensitive to scent.
-                    </p>
+                    <div class="tree-content">
+                        <h3>Nordmann Fir</h3>
+                        <div class="tree-features">
+                            <span class="availability-tag">Pre-Cut</span>
+                            <span class="feature-tag">Allergy Friendly</span>
+                            <span class="feature-tag">No Fragrance</span>
+                            <span class="feature-tag">Dark Green</span>
+                        </div>
+                        <p>
+                            Darker than almost any other fir, the Nordmann fir features glossy, dark green needles and excellent needle retention. The structure presents in a layered or tiered fashion, with sturdy branches for displaying ornaments. This tree has very little or almost no fragrance, making it a great option for those who may be sensitive to scent.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="tree-card">
-                    <span class="tree-icon">🌃</span>
-                    <h3>Grand Fir</h3>
-                    <div class="tree-features">
-                        <span class="availability-tag">Pre-Cut</span>
-                        <span class="feature-tag">Glossy Foliage</span>
-                        <span class="feature-tag">Fresh-Cut Scent</span>
-                        <span class="feature-tag">Feather-Like Needles</span>
+                    <div class="tree-image">
+                        <img src="images/grand.jpg" alt="Grand Fir Christmas Tree">
                     </div>
-                    <p>
-                        The Grand fir is an elegant tree with dense, glossy foliage. Its needles are very distinctive — long, dark green and occurring in a flattened arrangement in two well-defined rows, they create an almost feather-like appearance. The Grand fir also maintains a fresh-cut scent. Due to its needle retention, it's best displayed within two weeks of Christmas.
-                    </p>
+                    <div class="tree-content">
+                        <h3>Grand Fir</h3>
+                        <div class="tree-features">
+                            <span class="availability-tag">Pre-Cut</span>
+                            <span class="feature-tag">Glossy Foliage</span>
+                            <span class="feature-tag">Fresh-Cut Scent</span>
+                            <span class="feature-tag">Feather-Like Needles</span>
+                        </div>
+                        <p>
+                            The Grand fir is an elegant tree with dense, glossy foliage. Its needles are very distinctive — long, dark green and occurring in a flattened arrangement in two well-defined rows, they create an almost feather-like appearance. The Grand fir also maintains a fresh-cut scent. Due to its needle retention, it's best displayed within two weeks of Christmas.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="tree-card">
-                    <span class="tree-icon">⭐</span>
-                    <h3>Silvertip (Red Fir)</h3>
-                    <div class="tree-features">
-                        <span class="availability-tag">Pre-Cut</span>
-                        <span class="feature-tag">Elegant</span>
-                        <span class="feature-tag">Distinctive</span>
-                        <span class="feature-tag">Dense Foliage</span>
+                    <div class="tree-image">
+                        <img src="images/silvertip.jpg" alt="Silvertip (Red Fir) Christmas Tree">
                     </div>
-                    <p>
-                        The Silver Tip is an elegant tree with dense, glossy foliage. Its needles are very distinctive — long, dark green and occurring in a flattened arrangement in two well-defined rows, they create an almost feather-like appearance. The Silver Tip also maintains a fresh-cut scent. Due to its needle retention, it's best displayed within two weeks of Christmas.
-                    </p>
+                    <div class="tree-content">
+                        <h3>Silvertip (Red Fir)</h3>
+                        <div class="tree-features">
+                            <span class="availability-tag">Pre-Cut</span>
+                            <span class="feature-tag">Elegant</span>
+                            <span class="feature-tag">Distinctive</span>
+                            <span class="feature-tag">Dense Foliage</span>
+                        </div>
+                        <p>
+                            The Silver Tip is an elegant tree with dense, glossy foliage. Its needles are very distinctive — long, dark green and occurring in a flattened arrangement in two well-defined rows, they create an almost feather-like appearance. The Silver Tip also maintains a fresh-cut scent. Due to its needle retention, it's best displayed within two weeks of Christmas.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="tree-card">
-                    <span class="tree-icon">🌲</span>
-                    <h3>Douglas Fir</h3>
-                    <div class="tree-features">
-                        <span class="availability-tag">Pre-Cut</span>
-                        <span class="availability-tag">Choose & Cut</span>
-                        <span class="feature-tag">Classic Choice</span>
-                        <span class="feature-tag">Pleasant Scent</span>
-                        <span class="feature-tag">Budget Friendly</span>
+                    <div class="tree-image">
+                        <img src="images/douglas.jpg" alt="Douglas Fir Christmas Tree">
                     </div>
-                    <p>
-                        A classic choice! Dense with soft, light green needles and a pleasant scent, the Douglas fir is one of the most popular Christmas tree species. Because the branches are not as stiff as some other species, the Douglas fir is best decorated with light-weight ornaments. This tree is also a good choice for budget-conscious consumers.
-                    </p>
+                    <div class="tree-content">
+                        <h3>Douglas Fir</h3>
+                        <div class="tree-features">
+                            <span class="availability-tag">Pre-Cut</span>
+                            <span class="availability-tag">Choose & Cut</span>
+                            <span class="feature-tag">Classic Choice</span>
+                            <span class="feature-tag">Pleasant Scent</span>
+                            <span class="feature-tag">Budget Friendly</span>
+                        </div>
+                        <p>
+                            A classic choice! Dense with soft, light green needles and a pleasant scent, the Douglas fir is one of the most popular Christmas tree species. Because the branches are not as stiff as some other species, the Douglas fir is best decorated with light-weight ornaments. This tree is also a good choice for budget-conscious consumers.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="tree-card">
-                    <span class="tree-icon">🌿</span>
-                    <h3>Monterey Pine</h3>
-                    <div class="tree-features">
-                        <span class="availability-tag">Choose & Cut</span>
-                        <span class="feature-tag">U-Cut Experience</span>
-                        <span class="feature-tag">Full Dense Branches</span>
-                        <span class="feature-tag">Fresh Scent</span>
+                    <div class="tree-image">
+                        <img src="images/monterey.jpg" alt="Monterey Pine Christmas Tree">
                     </div>
-                    <p>
-                        A longtime California and Southwest favorite, Monterey Pine, has become the most popular Christmas Tree in Australia and New Zealand. Cherished for its full dense branches, long needles, lush green color and distinctive fresh scent, the long lasting Monterey Pine holds ornaments well and creates a unique eye-catching focal point for your home.
-                    </p>
+                    <div class="tree-content">
+                        <h3>Monterey Pine</h3>
+                        <div class="tree-features">
+                            <span class="availability-tag">Choose & Cut</span>
+                            <span class="feature-tag">U-Cut Experience</span>
+                            <span class="feature-tag">Full Dense Branches</span>
+                            <span class="feature-tag">Fresh Scent</span>
+                        </div>
+                        <p>
+                            A longtime California and Southwest favorite, Monterey Pine, has become the most popular Christmas Tree in Australia and New Zealand. Cherished for its full dense branches, long needles, lush green color and distinctive fresh scent, the long lasting Monterey Pine holds ornaments well and creates a unique eye-catching focal point for your home.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -275,7 +389,6 @@
                                 <th>Branch Strength</th>
                                 <th>Fragrance</th>
                                 <th>Special Features</th>
-                                <th>Price Range</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -299,15 +412,13 @@
                                 <td>Strong</td>
                                 <td>Pleasant</td>
                                 <td>Silvery needle tips, premium quality</td>
-                                <td>Pre-cut</td>
                             </tr>
                             <tr>
-                                <td><strong>Monterey Pine</strong></td>
+                                <td><strong>Grand Fir</strong></td>
                                 <td>Good</td>
                                 <td>Moderate</td>
-                                <td>Mild</td>
-                                <td>U-Cut experience, fresh from field</td>
-                                <td>U-Cut</td>
+                                <td>Fresh-Cut Scent</td>
+                                <td>Glossy foliage, feather-like needles</td>
                             </tr>
                             <tr>
                                 <td><strong>Douglas Fir</strong></td>
@@ -316,6 +427,13 @@
                                 <td>Sweet</td>
                                 <td>Traditional choice, great value</td>
                             </tr>
+                            <tr>
+                                <td><strong>Monterey Pine</strong></td>
+                                <td>Good</td>
+                                <td>Moderate</td>
+                                <td>Mild</td>
+                                <td>U-Cut experience, fresh from field</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -323,9 +441,9 @@
 
 
             <div class="size-guide">
-                <div class="section-header" style="color: var(--cream);">
-                    <h2>Size Guide</h2>
-                    <p>Choose the perfect size for your space</p>
+                <div class="section-header">
+                    <h2 style="color: var(--cream);">Size Guide</h2>
+                    <p style="color: var(--cream);">Choose the perfect size for your space</p>
                 </div>
                 <div class="size-options">
                     <div class="size-option">
@@ -390,34 +508,6 @@
         </div>
     </section>
 
-    <section class="contact-info">
-        <div class="container">
-            <div class="section-header" style="color: var(--cream);">
-                <h2>Ready to Find Your Tree?</h2>
-                <p>Visit us this season for the freshest trees and warmest service</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h4>📍 Location</h4>
-                    <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
-                </div>
-                <div class="contact-item">
-                    <h4>📞 Phone</h4>
-                    <p><a href="tel:+19253727274">(925) 372-7274</a></p>
-                </div>
-                <div class="contact-item">
-                    <h4>🕒 Hours</h4>
-                    <p>Monday-Friday: 1:00 PM - 7:00 PM<br>
-                    Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
-                </div>
-                <div class="contact-item">
-                    <h4>💳 Payment</h4>
-                    <p>Cash, Check, and Credit Cards Accepted<br>
-                    Venmo and PayPal Available</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="container">
@@ -446,6 +536,11 @@
                             <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
                         </a>
                     </div>
+                </div>
+                <div class="footer-section">
+                    <h4>💳 Payment</h4>
+                    <p><strong>We Accept:</strong><br>
+                    Cash, All Major Cards & Mobile Pay</p>
                 </div>
             </div>
             <div class="copyright">
