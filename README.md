@@ -1,11 +1,5 @@
 # Alhambra Valley Christmas Tree Farm - Website Refresh
 
-A modern, mobile-friendly website refresh for Alhambra Valley Christmas Tree Farm, featuring warm rustic colors, improved typography, and smooth animations.
-
-## Project Overview
-
-This website refresh modernizes the existing Alhambra Valley Christmas Tree Farm website while preserving all important content about the 55-year family business.
-
 ## Design Features
 
 - **Color Scheme**: Deep forest greens (#1e3a2e, #2d5a3d, #4a7c59) with cream accents (#f5f2e8)
@@ -39,7 +33,7 @@ This website refresh modernizes the existing Alhambra Valley Christmas Tree Farm
 - Wyatt & Ellie Scheberies (Next Generation)
 
 ### Tree Varieties Available
-- **Pre-Cut Trees**: Noble Fir, Nordmann Fir, Douglas Fir, Silvertip Fir
+- **Pre-Cut Trees**: Noble Fir, Nordmann Fir, Douglas Fir, Silvertip Fir, Grand Fir
 - **U-Cut Trees**: Monterey Pine
 - **Additional**: Fresh wreaths, garland, local honey, local soap
 
@@ -70,15 +64,8 @@ This website refresh modernizes the existing Alhambra Valley Christmas Tree Farm
 
 ## Future Enhancements
 
-- Add actual photos to gallery
 - Implement video player functionality
 - Add contact form
 - Integrate with social media feeds
 - Add online ordering system
 - Implement content management system
-
-## Notes
-
-- All placeholder content should be replaced with actual farm photos and videos
-- The design is optimized for performance and accessibility
-- The website maintains the warm, family-friendly atmosphere while modernizing the user experience
