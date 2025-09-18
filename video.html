@@ -104,12 +104,30 @@
 
         .featured-video {
             grid-column: 1 / -1;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 4rem;
         }
 
-        .featured-video .video-thumbnail {
-            height: 400px;
+        .featured-video .video-embed {
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .featured-video .video-embed iframe {
+            height: 500px;
+            border-radius: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .featured-video .video-embed {
+                height: 250px;
+            }
+            
+            .featured-video .video-embed iframe {
+                height: 250px;
+            }
         }
 
         .categories-filter {
@@ -299,6 +317,9 @@
                     </div>
                 </div>
 
+                <!-- HIDDEN VIDEOS - UNCOMMENT TO ADD BACK AFTER FILMING -->
+                
+                <!-- 
                 <div class="video-card" data-category="family">
                     <div class="video-thumbnail" data-video="meet-family">
                         <div class="play-button">▶</div>
@@ -435,6 +456,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </section>
