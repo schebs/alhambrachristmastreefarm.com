@@ -155,6 +155,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            loading: lazy;
         }
 
         .tree-content {
@@ -269,7 +270,7 @@
             <div class="trees-grid">
                 <div class="tree-card">
                     <div class="tree-image">
-                        <img src="images/noble.jpg" alt="Noble Fir Christmas Tree">
+                        <img src="images/noble.jpg" alt="Noble Fir Christmas Tree" loading="lazy">
                     </div>
                     <div class="tree-content">
                         <h3>Noble Fir</h3>
@@ -287,7 +288,7 @@
 
                 <div class="tree-card">
                     <div class="tree-image">
-                        <img src="images/nordmann.jpg" alt="Nordmann Fir Christmas Tree">
+                        <img src="images/nordmann.jpg" alt="Nordmann Fir Christmas Tree" loading="lazy">
                     </div>
                     <div class="tree-content">
                         <h3>Nordmann Fir</h3>
@@ -305,7 +306,7 @@
 
                 <div class="tree-card">
                     <div class="tree-image">
-                        <img src="images/grand.jpg" alt="Grand Fir Christmas Tree">
+                        <img src="images/grand.jpg" alt="Grand Fir Christmas Tree" loading="lazy">
                     </div>
                     <div class="tree-content">
                         <h3>Grand Fir</h3>
@@ -323,7 +324,7 @@
 
                 <div class="tree-card">
                     <div class="tree-image">
-                        <img src="images/silvertip.jpg" alt="Silvertip (Red Fir) Christmas Tree">
+                        <img src="images/silvertip.jpg" alt="Silvertip (Red Fir) Christmas Tree" loading="lazy">
                     </div>
                     <div class="tree-content">
                         <h3>Silvertip (Red Fir)</h3>
@@ -341,7 +342,7 @@
 
                 <div class="tree-card">
                     <div class="tree-image">
-                        <img src="images/douglas.jpg" alt="Douglas Fir Christmas Tree">
+                        <img src="images/douglas.jpg" alt="Douglas Fir Christmas Tree" loading="lazy">
                     </div>
                     <div class="tree-content">
                         <h3>Douglas Fir</h3>
@@ -360,7 +361,7 @@
 
                 <div class="tree-card">
                     <div class="tree-image">
-                        <img src="images/monterey.jpg" alt="Monterey Pine Christmas Tree">
+                        <img src="images/monterey.jpg" alt="Monterey Pine Christmas Tree" loading="lazy">
                     </div>
                     <div class="tree-content">
                         <h3>Monterey Pine</h3>
@@ -538,28 +539,40 @@
             mobileNav.classList.toggle('active');
         });
 
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Animation on scroll - with mobile performance optimization
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const isMobile = window.innerWidth <= 768;
+        
+        // Only enable animations if user doesn't prefer reduced motion and it's not mobile
+        if (!prefersReducedMotion.matches && !isMobile) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            document.querySelectorAll('section, .tree-card, .service-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
             });
-        }, observerOptions);
-
-        // Observe elements
-        document.querySelectorAll('section, .tree-card, .service-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(el);
-        });
+        } else {
+            // For mobile/reduced motion, show all elements immediately
+            document.querySelectorAll('section, .tree-card, .service-item').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        }
     </script>
 </body>
 </html>

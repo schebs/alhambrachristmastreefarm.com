@@ -705,4 +705,47 @@ footer {
   body {
     font-size: 16px;
   }
+  
+  /* Mobile Footer Optimizations */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .footer-section {
+    padding: 0 0.5rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  
+  .social-icons {
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .copyright {
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .copyright p {
+    font-size: 0.85rem;
+  }
 }
