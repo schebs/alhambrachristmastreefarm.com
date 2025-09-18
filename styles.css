@@ -650,12 +650,17 @@ footer {
   }
   
   .logo-img {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
   }
   
   .header-content {
     justify-content: center;
+    padding: 0.5rem 0;
+  }
+  
+  header {
+    padding: 0.5rem 0;
   }
   
   .hero {
@@ -697,55 +702,51 @@ footer {
     font-size: 1.8rem;
   }
   
-  .logo-img {
-    height: 80px;
-    width: 80px;
-  }
   
   body {
     font-size: 16px;
   }
   
   /* Mobile Footer Optimizations */
-  .footer-content {
-    grid-template-columns: 1fr;
+  footer .footer-content {
+    grid-template-columns: 1fr !important;
     gap: 2.5rem;
     text-align: center;
     padding: 0 1rem;
   }
   
-  .footer-section {
+  footer .footer-section {
     padding: 0 0.5rem;
   }
   
-  .footer-section h4 {
+  footer .footer-section h4 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
   }
   
-  .footer-section p {
+  footer .footer-section p {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 0.5rem;
   }
   
-  .social-icons {
+  footer .social-icons {
     justify-content: center;
     gap: 1rem;
     margin-top: 1.5rem;
   }
   
-  .social-icon {
-    width: 28px;
-    height: 28px;
+  footer .social-icon {
+    width: 28px !important;
+    height: 28px !important;
   }
   
-  .copyright {
+  footer .copyright {
     padding-top: 1.5rem;
     text-align: center;
   }
   
-  .copyright p {
+  footer .copyright p {
     font-size: 0.85rem;
   }
 }
