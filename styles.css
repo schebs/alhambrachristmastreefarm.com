@@ -274,7 +274,7 @@ header.scrolled .nav-right a.active {
   animation: fadeInUp 1s ease-out;
   width: 100%;
   margin-top: 70px;
-  padding: 1rem 2rem 1.5rem;
+  padding: 1rem 3rem 0.3rem;
   backdrop-filter: blur(2px);
   background: rgba(30, 58, 46, 0.15);
   border-radius: 15px;
