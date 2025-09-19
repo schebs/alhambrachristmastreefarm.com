@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>2647 Reliez Valley Road<br>Martinez, CA 94553</p>
                 </div>
                 <div class="footer-section">
-                    <h4>🕒 Hours</h4>
+                    <h4>🕒 Season Hours</h4>
+                    <p>November - December 24, 2024</p>
                     <p>Monday-Friday: 1:00 PM - 7:00 PM</p>
                     <p>Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
-                    <p><strong>*Closed Thanksgiving Day*</strong></p>
-                    <p><strong>Opening Day: Saturday, November 22nd!</strong></p>
+                    <p><em>Closed Thanksgiving Day</em></p>
                 </div>
                 <div class="footer-section">
                     <h4>📞 Contact</h4>
