@@ -17,6 +17,7 @@
     <meta name="msapplication-TileColor" content="#1e3a2e">
     
     <link rel="stylesheet" href="styles.css">
+    <link rel="preload" as="image" href="images/griffin.jpg" fetchpriority="high">
     <style>
         .timeline {
             position: relative;
@@ -289,9 +290,6 @@
             font-size: 1.3rem;
         }
 
-        .hero.history-hero {
-            background-image: url('images/griffin.jpg');
-        }
 
         @media (max-width: 768px) {
             .timeline::before {
@@ -354,6 +352,7 @@
 
 
     <section class="hero history-hero">
+        <img src="images/griffin.jpg" alt="Historical Griffin family Christmas tree farm - Martinez CA heritage" class="hero-image" fetchpriority="high" loading="eager">
         <div class="container">
             <div class="hero-content">
                 <h1>55 Years of Christmas Magic</h1>
