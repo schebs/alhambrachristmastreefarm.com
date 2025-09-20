@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p><a href="mailto:info@alhambrachristmastreefarm.com">info@alhambrachristmastreefarm.com</a></p>
                     <div class="social-icons">
                         <a href="https://www.instagram.com/alhambrachristmastreefarm/" target="_blank" rel="noopener">
-                            <img src="images/instagram-icon.png" alt="Instagram" class="social-icon">
+                            <img src="images/instagram-icon.webp" alt="Instagram" class="social-icon">
                         </a>
                         <a href="https://www.facebook.com/AlhambraChristmasTreeFarm/" target="_blank" rel="noopener">
-                            <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
+                            <img src="images/facebook-icon.webp" alt="Facebook" class="social-icon">
                         </a>
                         <a href="https://www.tiktok.com/@alhambraxmastreefarm" target="_blank" rel="noopener">
-                            <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
+                            <img src="images/tiktok-icon.webp" alt="TikTok" class="social-icon">
                         </a>
                     </div>
                 </div>
