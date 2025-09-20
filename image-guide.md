@@ -6,7 +6,7 @@ The `images/` folder has been created in your website root directory. Add your f
 ```
 images/
 ├── hero.webp               # Main hero image (like the tractor/lights photo you showed) ✅
-├── logo.png               # Farm logo (converted from HEIC) ✅
+├── logo.webp               # Farm logo (converted from HEIC) ✅
 ├── Transparent Round Logo.heic  # Original logo file ✅
 ├── farm-trees.jpg         # Additional tree field photos
 ├── farm-family.jpg        # Family working together
@@ -21,7 +21,7 @@ images/
 - **hero.webp**: Use a photo similar to the one you showed with the red tractor, string lights, and Christmas trees. This single image will be used across all pages to create a consistent, magical farm atmosphere. ✅ Added
 
 ### Logo:
-- **logo.png**: Your transparent round logo, automatically converted from HEIC format. Displays at 60px x 60px on desktop, 50px x 50px on mobile. ✅ Added
+- **logo.webp**: Your transparent round logo, automatically converted from HEIC format. Displays at 60px x 60px on desktop, 50px x 50px on mobile. ✅ Added
 
 ### Additional Background Photos:
 - **farm-trees.jpg**: Beautiful tree field shots
