@@ -198,27 +198,27 @@ header.scrolled .nav-right a.active {
 
 /* Farm photo backgrounds - add your images here */
 .hero.home-hero {
-  background-image: url('images/hero.jpg'); /* Main hero image - farm view with tractor and string lights */
+  background-image: url('images/hero.webp'); /* Main hero image - farm view with tractor and string lights */
 }
 
 .hero.gallery-hero {
-  background-image: url('images/hero.jpg'); /* Uses main hero image */
+  background-image: url('images/hero.webp'); /* Uses main hero image */
 }
 
 .hero.trees-hero {
-  background-image: url('images/hero.jpg'); /* Uses main hero image */
+  background-image: url('images/hero.webp'); /* Uses main hero image */
 }
 
 .hero.about-hero {
-  background-image: url('images/hero.jpg'); /* Uses main hero image */
+  background-image: url('images/hero.webp'); /* Uses main hero image */
 }
 
 .hero.history-hero {
-  background-image: url('images/hero.jpg'); /* Uses main hero image */
+  background-image: url('images/hero.webp'); /* Uses main hero image */
 }
 
 .hero.video-hero {
-  background-image: url('images/hero.jpg'); /* Uses main hero image */
+  background-image: url('images/hero.webp'); /* Uses main hero image */
 }
 
 /* Additional background image classes for farm photos */

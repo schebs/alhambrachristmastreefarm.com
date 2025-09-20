@@ -5,7 +5,7 @@ The `images/` folder has been created in your website root directory. Add your f
 
 ```
 images/
-├── hero.jpg               # Main hero image (like the tractor/lights photo you showed) ✅
+├── hero.webp               # Main hero image (like the tractor/lights photo you showed) ✅
 ├── logo.png               # Farm logo (converted from HEIC) ✅
 ├── Transparent Round Logo.heic  # Original logo file ✅
 ├── farm-trees.jpg         # Additional tree field photos
@@ -18,7 +18,7 @@ images/
 ## Photo Recommendations
 
 ### Main Hero Image (1200x600px recommended):
-- **hero.jpg**: Use a photo similar to the one you showed with the red tractor, string lights, and Christmas trees. This single image will be used across all pages to create a consistent, magical farm atmosphere. ✅ Added
+- **hero.webp**: Use a photo similar to the one you showed with the red tractor, string lights, and Christmas trees. This single image will be used across all pages to create a consistent, magical farm atmosphere. ✅ Added
 
 ### Logo:
 - **logo.png**: Your transparent round logo, automatically converted from HEIC format. Displays at 60px x 60px on desktop, 50px x 50px on mobile. ✅ Added
@@ -41,7 +41,7 @@ images/
 ### Background Image Classes Available:
 
 1. **Hero Sections** (automatically applied):
-   - All hero sections (`.home-hero`, `.gallery-hero`, `.trees-hero`, `.about-hero`, `.history-hero`, `.video-hero`) → hero.jpg
+   - All hero sections (`.home-hero`, `.gallery-hero`, `.trees-hero`, `.about-hero`, `.history-hero`, `.video-hero`) → hero.webp
 
 2. **Optional Section Backgrounds** (add to any section):
    - `.farm-background` → Base class for farm photo backgrounds
@@ -55,11 +55,11 @@ images/
 
 1. **Upload photos to GitHub**:
    - The `images/` folder is already created
-   - Upload your main farm photo as `hero.jpg`
+   - Upload your main farm photo as `hero.webp`
    - Add any additional photos with the names listed above
 
 2. **Photos will automatically display**:
-   - `hero.jpg` will appear on all page heroes (Home, Gallery, Trees, About, History, Video pages)
+   - `hero.webp` will appear on all page heroes (Home, Gallery, Trees, About, History, Video pages)
    - Creates consistent branding across your entire website
 
 3. **Optional: Add farm backgrounds to other sections**:
