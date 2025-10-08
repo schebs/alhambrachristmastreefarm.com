@@ -292,43 +292,38 @@
                 document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
-                // Filter gallery items with improved timing
+                // Filter gallery items by showing/hiding, then recreate Masonry
                 const category = this.getAttribute('data-category');
                 const items = document.querySelectorAll('.gallery-item');
                 
-                // Step 1: Hide all items first
+                // Step 1: Show/hide items based on filter
                 items.forEach(item => {
-                    item.style.display = 'none';
-                    item.style.opacity = '0';
+                    const itemCategories = item.getAttribute('data-category').split(' ');
+                    if (category === 'all' || itemCategories.includes(category)) {
+                        item.style.display = 'block';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    } else {
+                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                    }
                 });
                 
-                // Step 2: Force browser reflow
-                document.querySelector('.gallery-grid').offsetHeight;
-                
-                // Step 3: Show matching items after a brief delay
-                setTimeout(() => {
-                    items.forEach(item => {
-                        const itemCategories = item.getAttribute('data-category').split(' ');
-                        if (category === 'all' || itemCategories.includes(category)) {
-                            item.style.display = 'block';
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }
-                    });
-                    
-                    // Step 4: Re-layout Masonry with proper sequencing
-                    if (window.msnry) {
-                        setTimeout(() => {
-                            window.msnry.reloadItems();
-                            window.msnry.layout();
-                            
-                            // Additional layout call to ensure proper positioning
-                            setTimeout(() => {
-                                window.msnry.layout();
-                            }, 100);
-                        }, 100);
-                    }
-                }, 50);
+                // Step 2: Destroy and recreate Masonry to only manage visible items
+                if (window.msnry) {
+                    setTimeout(() => {
+                        // Destroy current Masonry instance
+                        window.msnry.destroy();
+                        
+                        // Recreate Masonry - only select visible items (not display:none)
+                        window.msnry = new Masonry(document.querySelector('.gallery-grid'), {
+                            itemSelector: '.gallery-item:not([style*="display: none"])',
+                            columnWidth: '.gallery-item',
+                            percentPosition: true,
+                            gutter: 8
+                        });
+                    }, 50);
+                }
             });
         });
 
