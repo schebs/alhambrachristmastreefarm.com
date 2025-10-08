@@ -292,27 +292,43 @@
                 document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
-                // Filter gallery items
+                // Filter gallery items with improved timing
                 const category = this.getAttribute('data-category');
                 const items = document.querySelectorAll('.gallery-item');
                 
+                // Step 1: Hide all items first
                 items.forEach(item => {
-                    const itemCategories = item.getAttribute('data-category').split(' ');
-                    if (category === 'all' || itemCategories.includes(category)) {
-                        item.style.display = 'block';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    item.style.display = 'none';
+                    item.style.opacity = '0';
                 });
                 
-                // Re-layout Masonry after filtering
-                if (window.msnry) {
-                    setTimeout(() => {
-                        window.msnry.layout();
-                    }, 50);
-                }
+                // Step 2: Force browser reflow
+                document.querySelector('.gallery-grid').offsetHeight;
+                
+                // Step 3: Show matching items after a brief delay
+                setTimeout(() => {
+                    items.forEach(item => {
+                        const itemCategories = item.getAttribute('data-category').split(' ');
+                        if (category === 'all' || itemCategories.includes(category)) {
+                            item.style.display = 'block';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }
+                    });
+                    
+                    // Step 4: Re-layout Masonry with proper sequencing
+                    if (window.msnry) {
+                        setTimeout(() => {
+                            window.msnry.reloadItems();
+                            window.msnry.layout();
+                            
+                            // Additional layout call to ensure proper positioning
+                            setTimeout(() => {
+                                window.msnry.layout();
+                            }, 100);
+                        }, 100);
+                    }
+                }, 50);
             });
         });
 
