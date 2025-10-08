@@ -68,15 +68,7 @@ This website refresh modernizes the existing Alhambra Valley Christmas Tree Farm
 
 ## Future Enhancements
 
-- Add actual photos to gallery
-- Implement video player functionality
 - Add contact form
 - Integrate with social media feeds
-- Add online ordering system
 - Implement content management system
 
-## Notes
-
-- All placeholder content should be replaced with actual farm photos and videos
-- The design is optimized for performance and accessibility
-- The website maintains the warm, family-friendly atmosphere while modernizing the user experience
