@@ -1,7 +1,5 @@
 # Alhambra Valley Christmas Tree Farm - Website Refresh
 
-A modern, mobile-friendly website refresh for Alhambra Valley Christmas Tree Farm, featuring warm rustic colors, improved typography, and smooth animations.
-
 ## Project Overview
 
 This website refresh modernizes the existing Alhambra Valley Christmas Tree Farm website while preserving all important content about the 55-year family business.
