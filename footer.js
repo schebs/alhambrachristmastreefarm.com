@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>📍 Location</h4>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.5367069909694!2d-122.12582592275392!3d37.96460229995326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808564590e964209%3A0x7338ffed4f8865bc!2sAlhambra%20Christmas%20Tree%20Farm!5e0!3m2!1sen!2sus!4v1760458054621!5m2!1sen!2sus" width="400" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <p><a href="https://www.google.com/maps/search/?api=1&query=2647+Reliez+Valley+Road+Martinez+CA+94553" target="_blank" rel="noopener">2647 Reliez Valley Road<br>Martinez, CA 94553</a></p>
                 </div>
                 <div class="footer-section">
