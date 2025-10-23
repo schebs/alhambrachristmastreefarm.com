@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="footer-section">
                     <h4>🕒 Season Hours</h4>
-                    <p>November - December 24, 2025</p>
+                    <p>November 21 - December 24, 2025</p>
                     <p>Monday-Friday: 1:00 PM - 7:00 PM</p>
                     <p>Weekends & Black Friday: 9:00 AM - 7:00 PM</p>
                     <p><em>Closed Thanksgiving Day</em></p>
