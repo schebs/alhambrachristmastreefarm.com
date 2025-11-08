@@ -395,8 +395,8 @@ section:nth-child(even) {
 }
 
 .feature-card, .tree-card, .gallery-item {
-  background: rgba(254, 253, 251, 0.95);
-  backdrop-filter: blur(3px);
+  background: rgba(30, 58, 46, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 2.5rem;
   text-align: center;
@@ -424,20 +424,20 @@ section:nth-child(even) {
 
 .feature-icon, .tree-icon {
   font-size: 3rem;
-  color: var(--forest-green);
+  color: var(--accent-gold);
   margin-bottom: 1.5rem;
   display: block;
 }
 
 .feature-card h3, .tree-card h3 {
   font-size: 1.6rem;
-  color: var(--forest-green-dark);
+  color: var(--warm-white);
   margin-bottom: 1rem;
 }
 
 .feature-card p, .tree-card p {
   font-size: 1.1rem;
-  color: var(--text-medium);
+  color: var(--cream);
   line-height: 1.6;
 }
 
