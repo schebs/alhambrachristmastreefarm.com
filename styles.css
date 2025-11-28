@@ -29,6 +29,11 @@ body {
   color: var(--text-dark);
   background-color: var(--warm-white);
   overflow-x: hidden;
+  /* iPhone notch support */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .container {
@@ -41,9 +46,9 @@ header {
   background: transparent;
   color: var(--warm-white);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: env(safe-area-inset-top, 0);
+  left: env(safe-area-inset-left, 0);
+  right: env(safe-area-inset-right, 0);
   z-index: 1000;
   transition: all 0.3s ease;
   padding: 1rem 0;
