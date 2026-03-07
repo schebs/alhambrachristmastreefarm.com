@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Alhambra Valley Christmas Tree Farm</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f5f3f0;
+    color: #2c2c2c;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+  }
+
+  .header {
+    background: #2d5016;
+    color: #fff;
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 2px; }
+  .header p { font-size: 13px; opacity: 0.8; font-weight: 400; }
+
+  .body { padding: 24px; }
+
+  /* Form elements */
+  label {
+    display: block; font-size: 13px; font-weight: 500; color: #777;
+    text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
+  }
+  input[type="password"], input[type="date"] {
+    width: 100%; padding: 12px 14px; border: 2px solid #ddd; border-radius: 8px;
+    font-size: 16px; font-family: inherit; outline: none; -webkit-appearance: none;
+  }
+  input:focus { border-color: #2d5016; }
+
+  .btn-primary {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    background: #2d5016; color: #fff; -webkit-tap-highlight-color: transparent;
+    margin-top: 12px;
+  }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-secondary {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    background: #e8e5e1; color: #5a3e2b; -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Loading */
+  .loading { text-align: center; padding: 48px 24px; color: #888; font-size: 15px; }
+  .spinner {
+    display: inline-block; width: 24px; height: 24px;
+    border: 3px solid #ddd; border-top-color: #2d5016;
+    border-radius: 50%; animation: spin 0.7s linear infinite; margin-bottom: 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .status-msg {
+    text-align: center; padding: 16px 20px; font-size: 15px; font-weight: 600;
+    line-height: 1.5; border-radius: 8px; margin-top: 16px;
+  }
+  .status-error { color: #8b3a2a; background: #fdf0ee; }
+
+  .address { text-align: center; margin-top: 20px; font-size: 12px; color: #aaa; line-height: 1.5; }
+
+  /* View toggle */
+  .view-toggle {
+    display: flex; gap: 0; margin-bottom: 16px; border-radius: 8px; overflow: hidden;
+    border: 2px solid #ddd;
+  }
+  .view-toggle button {
+    flex: 1; padding: 8px; border: none; background: #fff; font-size: 13px;
+    font-weight: 600; cursor: pointer; color: #888; transition: all 0.15s;
+  }
+  .view-toggle button.active { background: #2d5016; color: #fff; }
+
+  /* Date nav */
+  .date-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px; gap: 8px;
+  }
+  .date-nav button {
+    background: none; border: 2px solid #ddd; border-radius: 8px;
+    padding: 8px 12px; font-size: 16px; cursor: pointer; color: #555; font-weight: 700;
+  }
+  .date-nav button:active { background: #f0f0f0; }
+  .date-nav .date-display {
+    font-size: 15px; font-weight: 700; color: #2c2c2c; text-align: center; flex: 1;
+  }
+
+  /* Summary */
+  .summary {
+    background: #f8f7f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+    display: flex; gap: 16px; justify-content: center;
+  }
+  .summary-item { text-align: center; }
+  .summary-num { font-size: 22px; font-weight: 800; color: #2d5016; }
+  .summary-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+
+  /* Employee row */
+  .emp-card {
+    background: #f8f7f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 10px;
+    border-left: 3px solid #2d5016;
+  }
+  .emp-name { font-size: 15px; font-weight: 700; color: #2c2c2c; }
+  .emp-time { font-size: 14px; color: #555; margin-top: 2px; }
+  .emp-hours { font-size: 13px; color: #888; margin-top: 1px; }
+  .emp-status {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600; margin-top: 6px;
+  }
+  .badge-confirmed { background: #edf5e8; color: #2d5016; }
+  .badge-sent { background: #fff8e1; color: #8a6d00; }
+  .badge-proposed { background: #e8f0fe; color: #1a56db; }
+  .badge-declined { background: #fdf0ee; color: #8b3a2a; }
+  .badge-reminder_sent { background: #edf5e8; color: #2d5016; }
+
+  .no-shifts { text-align: center; padding: 24px; color: #888; font-size: 14px; }
+
+  /* Calendar */
+  .cal-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+  }
+  .cal-header button {
+    background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px;
+    color: #555; font-weight: 700;
+  }
+  .cal-header .cal-month { font-size: 15px; font-weight: 700; color: #2c2c2c; }
+
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center;
+  }
+  .cal-day-label { font-size: 11px; font-weight: 600; color: #aaa; padding: 4px 0; text-transform: uppercase; }
+  .cal-day {
+    aspect-ratio: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; border-radius: 8px; font-size: 14px; cursor: default;
+    position: relative; color: #888;
+  }
+  .cal-day.has-shift { background: #edf5e8; color: #2d5016; font-weight: 700; cursor: pointer; }
+  .cal-day.has-shift:active { background: #ddebd3; }
+  .cal-day.today { box-shadow: inset 0 0 0 2px #2d5016; }
+  .cal-day.other-month { color: #ddd; }
+  .cal-count {
+    font-size: 9px; font-weight: 800; color: #fff; background: #2d5016;
+    border-radius: 8px; padding: 0 4px; position: absolute; bottom: 3px;
+    min-width: 14px; text-align: center;
+  }
+
+  .day-detail { margin-top: 16px; }
+  .day-detail-title { font-size: 14px; font-weight: 700; color: #2c2c2c; margin-bottom: 10px; }
+
+  .logout-link {
+    display: block; text-align: center; margin-top: 12px; font-size: 13px;
+    color: #888; cursor: pointer; text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="main-card">
+
+  <!-- LOGIN -->
+  <div id="login-state">
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p>Manager Schedule</p></div>
+    <div class="body">
+      <label for="pw-input">Password</label>
+      <input type="password" id="pw-input" placeholder="Enter manager password">
+      <button class="btn-primary" id="login-btn" onclick="doLogin()">Sign In</button>
+      <div id="login-error"></div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading-state" class="loading" style="display:none;">
+    <div class="spinner"></div><div>Loading schedule...</div>
+  </div>
+
+  <!-- SCHEDULE VIEW -->
+  <div id="schedule-state" style="display:none;">
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p>Manager Schedule</p></div>
+    <div class="body">
+      <div class="view-toggle">
+        <button id="toggle-day" class="active" onclick="switchView('day')">Day View</button>
+        <button id="toggle-cal" onclick="switchView('calendar')">Calendar</button>
+      </div>
+
+      <!-- DAY VIEW -->
+      <div id="day-view">
+        <div class="date-nav">
+          <button onclick="navDay(-1)">&#9664;</button>
+          <div class="date-display" id="day-label"></div>
+          <button onclick="navDay(1)">&#9654;</button>
+        </div>
+        <div id="day-summary"></div>
+        <div id="day-list"></div>
+      </div>
+
+      <!-- CALENDAR VIEW -->
+      <div id="calendar-view" style="display:none;">
+        <div id="cal-container"></div>
+        <div id="cal-day-detail"></div>
+      </div>
+
+      <span class="logout-link" onclick="doLogout()">Sign out</span>
+    </div>
+  </div>
+
+  <!-- ERROR -->
+  <div id="error-state" style="display:none;">
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p>Manager Schedule</p></div>
+    <div class="body">
+      <div class="status-msg status-error" id="error-msg">Something went wrong.</div>
+      <div style="margin-top:12px;"><button class="btn-secondary" onclick="doLogout()">Back</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="address">2647 Reliez Valley Road<br>Martinez, CA 94553</div>
+
+<script>
+  var API_URL = 'https://script.google.com/macros/s/AKfycbz-FdBtd4CULMQH1W-BBG8X6jEvUU18IYg1wtOYLqPN3iXzWatIfbjpJ_QsXOjePZan/exec';
+  var storedPassword = '';
+  var allData = {}; // keyed by date string "YYYY-MM-DD" -> array of shifts
+  var currentDate = new Date();
+  var calMonth = new Date().getMonth();
+  var calYear = new Date().getFullYear();
+
+  function showState(s) {
+    ['login','loading','schedule','error'].forEach(function(id) {
+      document.getElementById(id + '-state').style.display = (id === s) ? 'block' : 'none';
+    });
+  }
+
+  function jsonp(url, cb) {
+    var name = 'cb_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
+    window[name] = function(data) { cb(data); delete window[name]; };
+    var s = document.createElement('script');
+    s.src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'callback=' + name;
+    s.onerror = function() { cb(null); delete window[name]; };
+    document.body.appendChild(s);
+  }
+
+  // ===================== LOGIN =====================
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  function doLogin() {
+    var pw = document.getElementById('pw-input').value.trim();
+    if (!pw) return;
+    var btn = document.getElementById('login-btn');
+    btn.disabled = true; btn.textContent = 'Signing in...';
+    document.getElementById('login-error').innerHTML = '';
+
+    storedPassword = pw;
+    loadSchedule(function(ok) {
+      btn.disabled = false; btn.textContent = 'Sign In';
+      if (!ok) {
+        storedPassword = '';
+      }
+    });
+  }
+
+  function doLogout() {
+    storedPassword = '';
+    allData = {};
+    document.getElementById('pw-input').value = '';
+    showState('login');
+  }
+
+  // ===================== LOAD DATA =====================
+  function loadSchedule(cb) {
+    showState('loading');
+
+    // Fetch 60 days of data from today
+    var start = new Date();
+    start.setDate(start.getDate() - 7); // include a week back
+    var end = new Date();
+    end.setDate(end.getDate() + 60);
+
+    var startStr = dateToStr(start);
+    var endStr = dateToStr(end);
+
+    var url = API_URL + '?action=adminSchedule&password=' + encodeURIComponent(storedPassword)
+      + '&start=' + encodeURIComponent(startStr) + '&end=' + encodeURIComponent(endStr);
+
+    jsonp(url, function(data) {
+      if (!data) {
+        document.getElementById('error-msg').textContent = 'Could not connect to server.';
+        showState('error');
+        if (cb) cb(false);
+        return;
+      }
+      if (data.error) {
+        if (data.error === 'Invalid password.') {
+          document.getElementById('login-error').innerHTML =
+            '<div class="status-msg status-error" style="margin-top:12px;padding:12px;font-size:14px;">Wrong password.</div>';
+          showState('login');
+        } else {
+          document.getElementById('error-msg').textContent = data.error;
+          showState('error');
+        }
+        if (cb) cb(false);
+        return;
+      }
+
+      // Index shifts by date
+      allData = {};
+      var shifts = data.shifts || [];
+      for (var i = 0; i < shifts.length; i++) {
+        var d = shifts[i].date;
+        if (!allData[d]) allData[d] = [];
+        allData[d].push(shifts[i]);
+      }
+
+      // Sort each day by start time
+      var dates = Object.keys(allData);
+      for (var j = 0; j < dates.length; j++) {
+        allData[dates[j]].sort(function(a, b) {
+          return parseTimeToMin(a.start_time) - parseTimeToMin(b.start_time);
+        });
+      }
+
+      currentDate = new Date();
+      renderDayView();
+      showState('schedule');
+      if (cb) cb(true);
+    });
+  }
+
+  // ===================== HELPERS =====================
+  function dateToStr(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  function formatDateNice(ds) {
+    if (!ds) return '';
+    try {
+      var p = ds.split('-');
+      var d = new Date(+p[0], +p[1]-1, +p[2], 12);
+      var dn = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var mn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return dn[d.getDay()] + ', ' + mn[d.getMonth()] + ' ' + d.getDate();
+    } catch(e) { return ds; }
+  }
+
+  function formatDateShort(ds) {
+    if (!ds) return '';
+    try {
+      var p = ds.split('-');
+      var d = new Date(+p[0], +p[1]-1, +p[2], 12);
+      var mn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return mn[d.getMonth()] + ' ' + d.getDate();
+    } catch(e) { return ds; }
+  }
+
+  function parseTimeToMin(t) {
+    if (!t) return 0;
+    var str = t.toUpperCase().replace(/\s+/g,'');
+    var isPM = str.indexOf('PM') > -1;
+    var isAM = str.indexOf('AM') > -1;
+    str = str.replace('AM','').replace('PM','');
+    var parts = str.split(':');
+    var h = parseInt(parts[0]);
+    var m = parseInt(parts[1]) || 0;
+    if (isPM && h !== 12) h += 12;
+    if (isAM && h === 12) h = 0;
+    return h * 60 + m;
+  }
+
+  function calcHours(start, end) {
+    if (!start || !end) return '';
+    var s = parseTimeToMin(start);
+    var e = parseTimeToMin(end);
+    if (e <= s) return '';
+    var h = (e - s) / 60;
+    return h % 1 === 0 ? h + '' : h.toFixed(1);
+  }
+
+  // ===================== VIEW TOGGLE =====================
+  function switchView(view) {
+    document.getElementById('toggle-day').className = view === 'day' ? 'active' : '';
+    document.getElementById('toggle-cal').className = view === 'calendar' ? 'active' : '';
+    document.getElementById('day-view').style.display = view === 'day' ? 'block' : 'none';
+    document.getElementById('calendar-view').style.display = view === 'calendar' ? 'block' : 'none';
+    document.getElementById('cal-day-detail').innerHTML = '';
+    if (view === 'calendar') renderCalendar();
+  }
+
+  // ===================== DAY VIEW =====================
+  function navDay(offset) {
+    currentDate.setDate(currentDate.getDate() + offset);
+    renderDayView();
+  }
+
+  function renderDayView() {
+    var ds = dateToStr(currentDate);
+    document.getElementById('day-label').textContent = formatDateNice(ds);
+
+    var shifts = allData[ds] || [];
+
+    // Summary
+    var totalPeople = shifts.length;
+    var confirmed = 0;
+    var pending = 0;
+    for (var i = 0; i < shifts.length; i++) {
+      var sl = shifts[i].status.toLowerCase();
+      if (sl === 'confirmed' || sl === 'reminder_sent') confirmed++;
+      else if (sl === 'sent' || sl === 'proposed') pending++;
+    }
+
+    var summaryEl = document.getElementById('day-summary');
+    if (totalPeople > 0) {
+      summaryEl.innerHTML = '<div class="summary">'
+        + '<div class="summary-item"><div class="summary-num">' + totalPeople + '</div><div class="summary-label">Scheduled</div></div>'
+        + '<div class="summary-item"><div class="summary-num">' + confirmed + '</div><div class="summary-label">Confirmed</div></div>'
+        + '<div class="summary-item"><div class="summary-num">' + pending + '</div><div class="summary-label">Pending</div></div>'
+        + '</div>';
+    } else {
+      summaryEl.innerHTML = '';
+    }
+
+    // List
+    var listEl = document.getElementById('day-list');
+    if (shifts.length === 0) {
+      listEl.innerHTML = '<div class="no-shifts">No one scheduled for this day.</div>';
+      return;
+    }
+
+    var html = '';
+    for (var j = 0; j < shifts.length; j++) {
+      html += buildEmpCard(shifts[j]);
+    }
+    listEl.innerHTML = html;
+  }
+
+  function buildEmpCard(s) {
+    var sl = s.status.toLowerCase();
+    var hours = calcHours(s.start_time, s.end_time);
+    var html = '<div class="emp-card">';
+    html += '<div class="emp-name">' + (s.employee_name || 'Unknown') + '</div>';
+    html += '<div class="emp-time">' + (s.start_time || '') + ' \u2013 ' + (s.end_time || '') + '</div>';
+    if (hours) html += '<div class="emp-hours">' + hours + ' hours</div>';
+    html += '<span class="emp-status badge-' + sl + '">' + s.status + '</span>';
+    html += '</div>';
+    return html;
+  }
+
+  // ===================== CALENDAR VIEW =====================
+  function renderCalendar() {
+    var el = document.getElementById('cal-container');
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    var html = '<div class="cal-header">';
+    html += '<button onclick="calPrev()">\u25C0</button>';
+    html += '<span class="cal-month">' + months[calMonth] + ' ' + calYear + '</span>';
+    html += '<button onclick="calNext()">\u25B6</button>';
+    html += '</div>';
+
+    html += '<div class="cal-grid">';
+    var dayLabels = ['S','M','T','W','T','F','S'];
+    for (var dl = 0; dl < 7; dl++) {
+      html += '<div class="cal-day-label">' + dayLabels[dl] + '</div>';
+    }
+
+    var firstDay = new Date(calYear, calMonth, 1).getDay();
+    var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    var todayStr = dateToStr(new Date());
+
+    // Previous month padding
+    var prevDays = new Date(calYear, calMonth, 0).getDate();
+    for (var p = firstDay - 1; p >= 0; p--) {
+      html += '<div class="cal-day other-month">' + (prevDays - p) + '</div>';
+    }
+
+    for (var day = 1; day <= daysInMonth; day++) {
+      var ds = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+      var dayShifts = allData[ds] || [];
+      var hasShift = dayShifts.length > 0;
+      var isToday = ds === todayStr;
+      var classes = 'cal-day';
+      if (hasShift) classes += ' has-shift';
+      if (isToday) classes += ' today';
+
+      if (hasShift) {
+        html += '<div class="' + classes + '" onclick="showCalDay(\'' + ds + '\')">' + day;
+        html += '<span class="cal-count">' + dayShifts.length + '</span>';
+        html += '</div>';
+      } else {
+        html += '<div class="' + classes + '">' + day + '</div>';
+      }
+    }
+
+    // Next month padding
+    var totalCells = firstDay + daysInMonth;
+    var remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (var n = 1; n <= remaining; n++) {
+      html += '<div class="cal-day other-month">' + n + '</div>';
+    }
+
+    html += '</div>';
+    el.innerHTML = html;
+    document.getElementById('cal-day-detail').innerHTML = '';
+  }
+
+  function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
+  function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+
+  function showCalDay(ds) {
+    var el = document.getElementById('cal-day-detail');
+    var shifts = allData[ds] || [];
+    if (shifts.length === 0) { el.innerHTML = ''; return; }
+
+    var html = '<div class="day-detail">';
+    html += '<div class="day-detail-title">' + formatDateNice(ds) + ' \u2014 ' + shifts.length + ' scheduled</div>';
+    for (var i = 0; i < shifts.length; i++) {
+      html += buildEmpCard(shifts[i]);
+    }
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  // Start on login
+  showState('login');
+</script>
+</body>
+</html>
