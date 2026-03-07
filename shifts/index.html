@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shift Confirmation — Alhambra Valley Christmas Tree Farm</title>
+<title>Shifts — Alhambra Valley Christmas Tree Farm</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -34,264 +34,163 @@
     padding: 20px 24px;
     text-align: center;
   }
+  .header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 2px; }
+  .header p { font-size: 13px; opacity: 0.8; font-weight: 400; }
 
-  .header h1 {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    margin-bottom: 2px;
-  }
+  .body { padding: 24px; }
 
-  .header p {
-    font-size: 13px;
-    opacity: 0.8;
-    font-weight: 400;
-  }
-
-  .body {
-    padding: 24px;
-  }
-
-  .greeting {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #2c2c2c;
-  }
+  .greeting { font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #2c2c2c; }
 
   .detail-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 15px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 10px 0; border-bottom: 1px solid #eee; font-size: 15px;
   }
+  .detail-row:last-of-type { border-bottom: none; }
+  .detail-label { color: #777; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; }
+  .detail-value { font-weight: 600; text-align: right; color: #2c2c2c; }
 
-  .detail-row:last-of-type {
-    border-bottom: none;
-  }
-
-  .detail-label {
-    color: #777;
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-  }
-
-  .detail-value {
-    font-weight: 600;
-    text-align: right;
-    color: #2c2c2c;
-  }
-
-  .actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-  }
-
+  .actions { display: flex; gap: 12px; margin-top: 20px; }
   .btn {
-    flex: 1;
-    padding: 14px 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
+    flex: 1; padding: 14px 12px; border: none; border-radius: 8px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
     transition: opacity 0.15s ease, transform 0.1s ease;
     -webkit-tap-highlight-color: transparent;
   }
-
   .btn:active { transform: scale(0.97); }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
   .btn-confirm { background: #2d5016; color: #fff; }
   .btn-decline { background: #e8e5e1; color: #5a3e2b; }
 
-  .btn-lookup {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    background: #2d5016;
-    color: #fff;
-    -webkit-tap-highlight-color: transparent;
+  .btn-primary {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    background: #2d5016; color: #fff; -webkit-tap-highlight-color: transparent;
   }
-  .btn-lookup:active { transform: scale(0.97); }
-  .btn-lookup:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-secondary {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    background: #e8e5e1; color: #5a3e2b; -webkit-tap-highlight-color: transparent;
+  }
 
   .status-msg {
-    text-align: center;
-    padding: 20px 24px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.5;
-    border-radius: 8px;
-    margin-top: 16px;
+    text-align: center; padding: 16px 20px; font-size: 15px; font-weight: 600;
+    line-height: 1.5; border-radius: 8px; margin-top: 16px;
   }
-
   .status-confirmed { color: #2d5016; background: #edf5e8; }
   .status-declined { color: #8b3a2a; background: #fdf0ee; }
   .status-error { color: #8b3a2a; background: #fdf0ee; }
   .status-already { color: #5a5a5a; background: #f0f0f0; }
 
-  .loading {
-    text-align: center;
-    padding: 48px 24px;
-    color: #888;
-    font-size: 15px;
-  }
-
+  .loading { text-align: center; padding: 48px 24px; color: #888; font-size: 15px; }
   .spinner {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 3px solid #ddd;
-    border-top-color: #2d5016;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    margin-bottom: 12px;
+    display: inline-block; width: 24px; height: 24px;
+    border: 3px solid #ddd; border-top-color: #2d5016;
+    border-radius: 50%; animation: spin 0.7s linear infinite; margin-bottom: 12px;
   }
-
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .address {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 12px;
-    color: #aaa;
-    line-height: 1.5;
-  }
+  .address { text-align: center; margin-top: 20px; font-size: 12px; color: #aaa; line-height: 1.5; }
 
-  /* Lookup form styles */
-  .lookup-form {
-    margin-top: 8px;
-  }
-
+  /* Form */
+  .lookup-form { margin-top: 8px; }
   .lookup-form label {
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    color: #777;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 8px;
+    display: block; font-size: 13px; font-weight: 500; color: #777;
+    text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
   }
-
   .lookup-form input {
-    width: 100%;
-    padding: 12px 14px;
+    width: 100%; padding: 12px 14px; border: 2px solid #ddd; border-radius: 8px;
+    font-size: 16px; font-family: inherit; outline: none; -webkit-appearance: none;
+  }
+  .lookup-form input:focus { border-color: #2d5016; }
+  .lookup-form .btn-primary { margin-top: 12px; }
+
+  /* View toggle */
+  .view-toggle {
+    display: flex; gap: 0; margin-bottom: 16px; border-radius: 8px; overflow: hidden;
     border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.15s;
-    -webkit-appearance: none;
   }
-
-  .lookup-form input:focus {
-    border-color: #2d5016;
+  .view-toggle button {
+    flex: 1; padding: 8px; border: none; background: #fff; font-size: 13px;
+    font-weight: 600; cursor: pointer; color: #888; transition: all 0.15s;
   }
+  .view-toggle button.active { background: #2d5016; color: #fff; }
 
-  .lookup-form .btn-lookup {
-    margin-top: 12px;
-  }
-
+  /* Shift cards */
   .shift-card {
-    background: #f8f7f5;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
+    background: #f8f7f5; border-radius: 8px; padding: 16px; margin-bottom: 12px;
     border-left: 3px solid #2d5016;
   }
-
-  .shift-card .shift-date {
-    font-size: 15px;
-    font-weight: 700;
-    color: #2c2c2c;
-    margin-bottom: 4px;
+  .shift-date { font-size: 15px; font-weight: 700; color: #2c2c2c; margin-bottom: 2px; }
+  .shift-time { font-size: 14px; color: #555; margin-bottom: 2px; }
+  .shift-hours { font-size: 13px; color: #888; }
+  .shift-status-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600; margin-top: 6px;
   }
-
-  .shift-card .shift-time {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 2px;
-  }
-
-  .shift-card .shift-position {
-    font-size: 13px;
-    color: #888;
-  }
-
-  .shift-card .shift-status-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-top: 6px;
-  }
-
   .badge-confirmed { background: #edf5e8; color: #2d5016; }
   .badge-sent { background: #fff8e1; color: #8a6d00; }
   .badge-proposed { background: #e8f0fe; color: #1a56db; }
   .badge-declined { background: #fdf0ee; color: #8b3a2a; }
+  .badge-reminder_sent { background: #edf5e8; color: #2d5016; }
 
-  .no-shifts {
-    text-align: center;
-    padding: 20px;
-    color: #888;
-    font-size: 14px;
+  .no-shifts { text-align: center; padding: 20px; color: #888; font-size: 14px; }
+
+  /* Calendar */
+  .cal-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+  }
+  .cal-header button {
+    background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px;
+    color: #555; font-weight: 700;
+  }
+  .cal-header .cal-month { font-size: 15px; font-weight: 700; color: #2c2c2c; }
+
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center;
+  }
+  .cal-day-label { font-size: 11px; font-weight: 600; color: #aaa; padding: 4px 0; text-transform: uppercase; }
+  .cal-day {
+    aspect-ratio: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; border-radius: 8px; font-size: 14px; cursor: default;
+    position: relative; color: #888;
+  }
+  .cal-day.has-shift { background: #edf5e8; color: #2d5016; font-weight: 700; cursor: pointer; }
+  .cal-day.has-shift:active { background: #ddebd3; }
+  .cal-day.today { box-shadow: inset 0 0 0 2px #2d5016; }
+  .cal-day.other-month { color: #ddd; }
+  .cal-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: #2d5016;
+    position: absolute; bottom: 4px;
   }
 
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-    margin-top: 4px;
-  }
+  /* Day detail overlay */
+  .day-detail { margin-top: 16px; }
+  .day-detail-title { font-size: 14px; font-weight: 700; color: #2c2c2c; margin-bottom: 10px; }
+
+  .card-actions-sm { display: flex; gap: 8px; margin-top: 10px; }
+  .card-actions-sm .btn { padding: 10px 8px; font-size: 14px; }
 </style>
 </head>
 <body>
 
 <div class="card" id="main-card">
-  <!-- Loading state -->
   <div id="loading-state" class="loading" style="display:none;">
-    <div class="spinner"></div>
-    <div>Loading...</div>
+    <div class="spinner"></div><div>Loading...</div>
   </div>
 
-  <!-- CONFIRM MODE: single shift confirmation from text link -->
+  <!-- CONFIRM MODE: from text link -->
   <div id="confirm-state" style="display:none;">
-    <div class="header">
-      <h1>Alhambra Valley Christmas Tree Farm</h1>
-      <p>Shift Confirmation</p>
-    </div>
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p>Shift Confirmation</p></div>
     <div class="body">
       <div class="greeting" id="greeting"></div>
-      <div class="detail-row">
-        <span class="detail-label">Date</span>
-        <span class="detail-value" id="shift-date"></span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Time</span>
-        <span class="detail-value" id="shift-time"></span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Position</span>
-        <span class="detail-value" id="shift-position"></span>
-      </div>
+      <div class="detail-row"><span class="detail-label">Date</span><span class="detail-value" id="c-date"></span></div>
+      <div class="detail-row"><span class="detail-label">Time</span><span class="detail-value" id="c-time"></span></div>
+      <div class="detail-row"><span class="detail-label">Hours</span><span class="detail-value" id="c-hours"></span></div>
       <div id="action-area">
-        <div class="actions" id="buttons">
+        <div class="actions">
           <button class="btn btn-confirm" id="btn-yes" onclick="respond('confirmed')">Confirm</button>
           <button class="btn btn-decline" id="btn-no" onclick="respond('declined')">Decline</button>
         </div>
@@ -299,167 +198,146 @@
     </div>
   </div>
 
-  <!-- LOOKUP MODE: employee enters phone to see shifts -->
+  <!-- LOOKUP MODE: phone entry -->
   <div id="lookup-state">
-    <div class="header">
-      <h1>Alhambra Valley Christmas Tree Farm</h1>
-      <p>My Shifts</p>
-    </div>
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p>My Shifts</p></div>
     <div class="body">
       <div class="lookup-form">
         <label for="phone-input">Enter your phone number</label>
         <input type="tel" id="phone-input" placeholder="(925) 555-1234" autocomplete="tel">
-        <button class="btn-lookup" id="lookup-btn" onclick="lookupShifts()">View My Shifts</button>
+        <button class="btn-primary" id="lookup-btn" onclick="lookupShifts()">View My Shifts</button>
       </div>
     </div>
   </div>
 
-  <!-- LOOKUP RESULTS -->
+  <!-- RESULTS MODE -->
   <div id="results-state" style="display:none;">
-    <div class="header">
-      <h1>Alhambra Valley Christmas Tree Farm</h1>
-      <p id="results-name">My Shifts</p>
-    </div>
-    <div class="body" id="results-body">
-    </div>
-  </div>
-
-  <!-- Error state -->
-  <div id="error-state" style="display:none;">
-    <div class="header">
-      <h1>Alhambra Valley Christmas Tree Farm</h1>
-      <p>Shifts</p>
-    </div>
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p id="results-name">My Shifts</p></div>
     <div class="body">
-      <div class="status-msg status-error" id="error-msg">
-        Something went wrong. Please try again or reply to the text message instead.
+      <div class="view-toggle">
+        <button id="toggle-list" class="active" onclick="switchView('list')">List</button>
+        <button id="toggle-cal" onclick="switchView('calendar')">Calendar</button>
+      </div>
+      <div id="list-view"></div>
+      <div id="calendar-view" style="display:none;"></div>
+      <div id="day-detail"></div>
+      <div style="margin-top:16px;">
+        <button class="btn-secondary" onclick="showState('lookup')">Back</button>
       </div>
     </div>
   </div>
+
+  <!-- ERROR -->
+  <div id="error-state" style="display:none;">
+    <div class="header"><h1>Alhambra Valley Christmas Tree Farm</h1><p>Shifts</p></div>
+    <div class="body">
+      <div class="status-msg status-error" id="error-msg">Something went wrong.</div>
+      <div style="margin-top:12px;"><button class="btn-secondary" onclick="showState('lookup')">Try Again</button></div>
+    </div>
+  </div>
 </div>
 
-<div class="address">
-  2647 Reliez Valley Road<br>Martinez, CA 94553
-</div>
+<div class="address">2647 Reliez Valley Road<br>Martinez, CA 94553</div>
 
 <script>
-  // Apps Script web app URL
   var API_URL = 'https://script.google.com/macros/s/AKfycbz-FdBtd4CULMQH1W-BBG8X6jEvUU18IYg1wtOYLqPN3iXzWatIfbjpJ_QsXOjePZan/exec';
-
   var params = new URLSearchParams(window.location.search);
   var uid = params.get('uid');
+  var allShifts = [];
+  var calMonth = new Date().getMonth();
+  var calYear = new Date().getFullYear();
 
-  function showState(state) {
-    document.getElementById('loading-state').style.display = state === 'loading' ? 'block' : 'none';
-    document.getElementById('confirm-state').style.display = state === 'confirm' ? 'block' : 'none';
-    document.getElementById('lookup-state').style.display = state === 'lookup' ? 'block' : 'none';
-    document.getElementById('results-state').style.display = state === 'results' ? 'block' : 'none';
-    document.getElementById('error-state').style.display = state === 'error' ? 'block' : 'none';
+  function showState(s) {
+    ['loading','confirm','lookup','results','error'].forEach(function(id) {
+      document.getElementById(id + '-state').style.display = (id === s) ? 'block' : 'none';
+    });
   }
 
-  function formatDate(dateStr) {
-    if (!dateStr) return '';
+  function formatDate(ds) {
+    if (!ds) return '';
     try {
-      var parts = dateStr.split('-');
-      var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]), 12, 0, 0);
-      var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate();
-    } catch(e) {
-      return dateStr;
-    }
+      var p = ds.split('-');
+      var d = new Date(+p[0], +p[1]-1, +p[2], 12);
+      var dn = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var mn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return dn[d.getDay()] + ', ' + mn[d.getMonth()] + ' ' + d.getDate();
+    } catch(e) { return ds; }
   }
 
-  // =========================================
-  // CONFIRM MODE — from text message link
-  // =========================================
+  function calcHours(start, end) {
+    if (!start || !end) return '';
+    try {
+      var s = parseTimeToMin(start);
+      var e = parseTimeToMin(end);
+      if (e <= s) return '';
+      var h = (e - s) / 60;
+      return h % 1 === 0 ? h + '' : h.toFixed(1);
+    } catch(ex) { return ''; }
+  }
 
+  function parseTimeToMin(t) {
+    var str = t.toUpperCase().replace(/\s+/g,'');
+    var isPM = str.indexOf('PM') > -1;
+    var isAM = str.indexOf('AM') > -1;
+    str = str.replace('AM','').replace('PM','');
+    var parts = str.split(':');
+    var h = parseInt(parts[0]);
+    var m = parseInt(parts[1]) || 0;
+    if (isPM && h !== 12) h += 12;
+    if (isAM && h === 12) h = 0;
+    if (!isPM && !isAM) { /* 24hr format, keep as is */ }
+    return h * 60 + m;
+  }
+
+  function jsonp(url, cb) {
+    var name = 'cb_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
+    window[name] = function(data) { cb(data); delete window[name]; };
+    var s = document.createElement('script');
+    s.src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'callback=' + name;
+    s.onerror = function() { cb(null); delete window[name]; };
+    document.body.appendChild(s);
+  }
+
+  // ===================== CONFIRM MODE =====================
   if (uid) {
     showState('loading');
-    loadAssignment();
+    jsonp(API_URL + '?action=getAssignment&uid=' + encodeURIComponent(uid), function(data) {
+      if (!data || data.error) {
+        document.getElementById('error-msg').textContent = data ? data.error : 'Could not load shift.';
+        showState('error'); return;
+      }
+      var hours = calcHours(data.start_time, data.end_time);
+      document.getElementById('greeting').textContent = 'Hi ' + (data.employee_name || '') + ',';
+      document.getElementById('c-date').textContent = formatDate(data.date);
+      document.getElementById('c-time').textContent = (data.start_time||'') + ' \u2013 ' + (data.end_time||'');
+      document.getElementById('c-hours').textContent = hours ? hours + ' hours' : '';
+
+      if (data.status === 'confirmed' || data.status === 'declined') {
+        var msg = data.status === 'confirmed' ? 'You already confirmed this shift. See you there!' : 'You already declined this shift.';
+        document.getElementById('action-area').innerHTML = '<div class="status-msg status-already">' + msg + '</div>';
+      }
+      showState('confirm');
+    });
   } else {
     showState('lookup');
   }
 
-  function loadAssignment() {
-    var callbackName = 'cb_' + Date.now();
-    window[callbackName] = function(data) {
-      if (!data || data.error) {
-        document.getElementById('error-msg').textContent = data ? data.error : 'Could not load shift details.';
-        showState('error');
-        return;
-      }
-
-      // Check if already responded
-      if (data.status === 'confirmed' || data.status === 'declined') {
-        document.getElementById('greeting').textContent = 'Hi ' + (data.employee_name || '') + ',';
-        document.getElementById('shift-date').textContent = formatDate(data.date);
-        document.getElementById('shift-time').textContent = (data.start_time || '') + ' \u2013 ' + (data.end_time || '');
-        document.getElementById('shift-position').textContent = data.position || '';
-        var msg = data.status === 'confirmed'
-          ? 'You already confirmed this shift. See you there!'
-          : 'You already declined this shift.';
-        document.getElementById('action-area').innerHTML = '<div class="status-msg status-already">' + msg + '</div>';
-        showState('confirm');
-        return;
-      }
-
-      document.getElementById('greeting').textContent = 'Hi ' + (data.employee_name || '') + ',';
-      document.getElementById('shift-date').textContent = formatDate(data.date);
-      document.getElementById('shift-time').textContent = (data.start_time || '') + ' \u2013 ' + (data.end_time || '');
-      document.getElementById('shift-position').textContent = data.position || '';
-      showState('confirm');
-      delete window[callbackName];
-    };
-
-    var script = document.createElement('script');
-    script.src = API_URL + '?action=getAssignment&uid=' + encodeURIComponent(uid) + '&callback=' + callbackName;
-    script.onerror = function() {
-      document.getElementById('error-msg').textContent = 'Could not connect. Please reply to the text message instead.';
-      showState('error');
-    };
-    document.body.appendChild(script);
-  }
-
   function respond(status) {
-    var btnYes = document.getElementById('btn-yes');
-    var btnNo = document.getElementById('btn-no');
-    btnYes.disabled = true;
-    btnNo.disabled = true;
-    if (status === 'confirmed') { btnYes.textContent = 'Confirming...'; }
-    else { btnNo.textContent = 'Declining...'; }
-
-    var callbackName = 'cb_update_' + Date.now();
-    window[callbackName] = function(data) {
+    var by = document.getElementById('btn-yes'), bn = document.getElementById('btn-no');
+    by.disabled = bn.disabled = true;
+    (status === 'confirmed' ? by : bn).textContent = status === 'confirmed' ? 'Confirming...' : 'Declining...';
+    jsonp(API_URL + '?action=updateStatus&uid=' + encodeURIComponent(uid) + '&status=' + encodeURIComponent(status), function(data) {
       if (!data || data.error) {
-        btnYes.disabled = false;
-        btnNo.disabled = false;
-        btnYes.textContent = 'Confirm';
-        btnNo.textContent = 'Decline';
-        document.getElementById('action-area').innerHTML =
-          '<div class="status-msg status-error">Something went wrong. Please reply YES or NO to the text instead.</div>';
+        document.getElementById('action-area').innerHTML = '<div class="status-msg status-error">Something went wrong. Reply YES or NO to the text instead.</div>';
         return;
       }
-      var cssClass = status === 'confirmed' ? 'status-confirmed' : 'status-declined';
+      var cls = status === 'confirmed' ? 'status-confirmed' : 'status-declined';
       var msg = status === 'confirmed' ? 'Confirmed! See you there.' : 'Declined. We\'ll find a replacement.';
-      document.getElementById('action-area').innerHTML = '<div class="status-msg ' + cssClass + '">' + msg + '</div>';
-      delete window[callbackName];
-    };
-
-    var script = document.createElement('script');
-    script.src = API_URL + '?action=updateStatus&uid=' + encodeURIComponent(uid) + '&status=' + encodeURIComponent(status) + '&callback=' + callbackName;
-    script.onerror = function() {
-      document.getElementById('action-area').innerHTML =
-        '<div class="status-msg status-error">Could not connect. Please reply YES or NO to the text message instead.</div>';
-    };
-    document.body.appendChild(script);
+      document.getElementById('action-area').innerHTML = '<div class="status-msg ' + cls + '">' + msg + '</div>';
+    });
   }
 
-  // =========================================
-  // LOOKUP MODE — employee enters phone
-  // =========================================
-
-  // Allow Enter key on the input
+  // ===================== LOOKUP MODE =====================
   document.getElementById('phone-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') lookupShifts();
   });
@@ -467,114 +345,181 @@
   function lookupShifts() {
     var phone = document.getElementById('phone-input').value.trim();
     if (!phone) return;
-
     var btn = document.getElementById('lookup-btn');
-    btn.disabled = true;
-    btn.textContent = 'Looking up...';
+    btn.disabled = true; btn.textContent = 'Looking up...';
 
-    // Normalize: strip non-digits, add +1 if needed
     var digits = phone.replace(/\D/g, '');
     if (digits.length === 10) digits = '1' + digits;
-    if (digits.length === 11 && digits[0] === '1') digits = '+' + digits;
-    else digits = '+' + digits;
+    digits = '+' + digits;
 
-    var callbackName = 'cb_lookup_' + Date.now();
-    window[callbackName] = function(data) {
-      btn.disabled = false;
-      btn.textContent = 'View My Shifts';
-
+    jsonp(API_URL + '?action=lookupShifts&phone=' + encodeURIComponent(digits), function(data) {
+      btn.disabled = false; btn.textContent = 'View My Shifts';
       if (!data || data.error) {
         document.getElementById('error-msg').textContent = data ? data.error : 'Could not look up shifts.';
-        showState('error');
-        return;
+        showState('error'); return;
       }
-
-      if (!data.shifts || data.shifts.length === 0) {
-        document.getElementById('results-name').textContent = data.employee_name || 'My Shifts';
-        document.getElementById('results-body').innerHTML = '<div class="no-shifts">No upcoming shifts found.</div>';
-        showState('results');
-        return;
-      }
-
+      allShifts = data.shifts || [];
       document.getElementById('results-name').textContent = (data.employee_name || '') + ' \u2014 Upcoming Shifts';
-
-      var html = '';
-      for (var i = 0; i < data.shifts.length; i++) {
-        var s = data.shifts[i];
-        var statusLower = s.status.toLowerCase();
-        var badgeClass = 'badge-' + statusLower;
-        html += '<div class="shift-card" id="shift-card-' + s.uid + '">';
-        html += '<div class="shift-date">' + formatDate(s.date) + '</div>';
-        html += '<div class="shift-time">' + s.start_time + ' \u2013 ' + s.end_time + '</div>';
-        html += '<div class="shift-position">' + s.position + '</div>';
-        html += '<span class="shift-status-badge ' + badgeClass + '">' + s.status + '</span>';
-        // Show Confirm/Decline buttons for Sent or Proposed shifts
-        if (statusLower === 'sent' || statusLower === 'proposed') {
-          html += '<div class="actions" style="margin-top:12px;">';
-          html += '<button class="btn btn-confirm" onclick="respondFromLookup(\'' + s.uid + '\', \'confirmed\', this)">Confirm</button>';
-          html += '<button class="btn btn-decline" onclick="respondFromLookup(\'' + s.uid + '\', \'declined\', this)">Decline</button>';
-          html += '</div>';
-        }
-        html += '</div>';
-      }
-
-      html += '<div style="text-align:center; margin-top:16px;"><button class="btn-lookup" onclick="showState(\'lookup\')" style="background:#e8e5e1; color:#5a3e2b;">Back</button></div>';
-
-      document.getElementById('results-body').innerHTML = html;
+      renderListView();
       showState('results');
-      delete window[callbackName];
-    };
-
-    var script = document.createElement('script');
-    script.src = API_URL + '?action=lookupShifts&phone=' + encodeURIComponent(digits) + '&callback=' + callbackName;
-    script.onerror = function() {
-      btn.disabled = false;
-      btn.textContent = 'View My Shifts';
-      document.getElementById('error-msg').textContent = 'Could not connect. Please try again.';
-      showState('error');
-    };
-    document.body.appendChild(script);
+    });
   }
 
-  // =========================================
-  // RESPOND FROM LOOKUP VIEW
-  // =========================================
+  // ===================== LIST VIEW =====================
+  function renderListView() {
+    var el = document.getElementById('list-view');
+    if (allShifts.length === 0) {
+      el.innerHTML = '<div class="no-shifts">No upcoming shifts found.</div>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < allShifts.length; i++) {
+      html += buildShiftCard(allShifts[i]);
+    }
+    el.innerHTML = html;
+  }
 
-  function respondFromLookup(shiftUid, status, buttonEl) {
-    var card = document.getElementById('shift-card-' + shiftUid);
-    var buttons = card.querySelectorAll('.btn');
-    for (var b = 0; b < buttons.length; b++) { buttons[b].disabled = true; }
-    buttonEl.textContent = status === 'confirmed' ? 'Confirming...' : 'Declining...';
+  function buildShiftCard(s) {
+    var sl = s.status.toLowerCase();
+    var hours = calcHours(s.start_time, s.end_time);
+    var html = '<div class="shift-card" id="sc-' + s.uid + '">';
+    html += '<div class="shift-date">' + formatDate(s.date) + '</div>';
+    html += '<div class="shift-time">' + s.start_time + ' \u2013 ' + s.end_time + '</div>';
+    if (hours) html += '<div class="shift-hours">' + hours + ' hours</div>';
+    html += '<span class="shift-status-badge badge-' + sl + '">' + s.status + '</span>';
+    if (sl === 'sent' || sl === 'proposed') {
+      html += '<div class="card-actions-sm actions">';
+      html += '<button class="btn btn-confirm" onclick="respondCard(\'' + s.uid + '\',\'confirmed\',this)">Confirm</button>';
+      html += '<button class="btn btn-decline" onclick="respondCard(\'' + s.uid + '\',\'declined\',this)">Decline</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+    return html;
+  }
 
-    var callbackName = 'cb_resp_' + Date.now();
-    window[callbackName] = function(data) {
-      // Find the actions div inside this card and replace it
-      var actionsDiv = card.querySelector('.actions');
+  function respondCard(shiftUid, status, btnEl) {
+    var card = document.getElementById('sc-' + shiftUid);
+    var btns = card.querySelectorAll('.btn');
+    for (var b = 0; b < btns.length; b++) btns[b].disabled = true;
+    btnEl.textContent = status === 'confirmed' ? 'Confirming...' : 'Declining...';
+
+    jsonp(API_URL + '?action=updateStatus&uid=' + encodeURIComponent(shiftUid) + '&status=' + encodeURIComponent(status), function(data) {
+      var ad = card.querySelector('.actions');
       if (!data || data.error) {
-        if (actionsDiv) actionsDiv.innerHTML = '<div class="status-msg status-error" style="padding:10px; font-size:13px;">Error. Reply to the text instead.</div>';
+        if (ad) ad.innerHTML = '<div class="status-msg status-error" style="padding:10px;font-size:13px;">Error. Reply to the text instead.</div>';
         return;
       }
-      var cssClass = status === 'confirmed' ? 'status-confirmed' : 'status-declined';
+      var cls = status === 'confirmed' ? 'status-confirmed' : 'status-declined';
       var msg = status === 'confirmed' ? 'Confirmed!' : 'Declined.';
-      if (actionsDiv) actionsDiv.innerHTML = '<div class="status-msg ' + cssClass + '" style="padding:10px; font-size:13px; margin-top:0;">' + msg + '</div>';
-      // Update the badge
+      if (ad) ad.innerHTML = '<div class="status-msg ' + cls + '" style="padding:10px;font-size:13px;margin-top:0;">' + msg + '</div>';
       var badge = card.querySelector('.shift-status-badge');
       if (badge) {
         badge.className = 'shift-status-badge badge-' + status;
         badge.textContent = status === 'confirmed' ? 'Confirmed' : 'Declined';
       }
-      delete window[callbackName];
-    };
+      // Update local data
+      for (var i = 0; i < allShifts.length; i++) {
+        if (allShifts[i].uid === shiftUid) {
+          allShifts[i].status = status === 'confirmed' ? 'Confirmed' : 'Declined';
+        }
+      }
+    });
+  }
 
-    var script = document.createElement('script');
-    script.src = API_URL + '?action=updateStatus&uid=' + encodeURIComponent(shiftUid) + '&status=' + encodeURIComponent(status) + '&callback=' + callbackName;
-    script.onerror = function() {
-      var actionsDiv = card.querySelector('.actions');
-      if (actionsDiv) actionsDiv.innerHTML = '<div class="status-msg status-error" style="padding:10px; font-size:13px;">Could not connect. Reply to the text instead.</div>';
-    };
-    document.body.appendChild(script);
+  // ===================== VIEW TOGGLE =====================
+  function switchView(view) {
+    document.getElementById('toggle-list').className = view === 'list' ? 'active' : '';
+    document.getElementById('toggle-cal').className = view === 'calendar' ? 'active' : '';
+    document.getElementById('list-view').style.display = view === 'list' ? 'block' : 'none';
+    document.getElementById('calendar-view').style.display = view === 'calendar' ? 'block' : 'none';
+    document.getElementById('day-detail').innerHTML = '';
+    if (view === 'calendar') renderCalendar();
+  }
+
+  // ===================== CALENDAR VIEW =====================
+  function renderCalendar() {
+    var el = document.getElementById('calendar-view');
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    // Build shift date lookup
+    var shiftDates = {};
+    for (var i = 0; i < allShifts.length; i++) {
+      var d = allShifts[i].date;
+      if (!shiftDates[d]) shiftDates[d] = [];
+      shiftDates[d].push(allShifts[i]);
+    }
+
+    var html = '<div class="cal-header">';
+    html += '<button onclick="calPrev()">\u25C0</button>';
+    html += '<span class="cal-month">' + months[calMonth] + ' ' + calYear + '</span>';
+    html += '<button onclick="calNext()">\u25B6</button>';
+    html += '</div>';
+
+    html += '<div class="cal-grid">';
+    var dayLabels = ['S','M','T','W','T','F','S'];
+    for (var dl = 0; dl < 7; dl++) {
+      html += '<div class="cal-day-label">' + dayLabels[dl] + '</div>';
+    }
+
+    var firstDay = new Date(calYear, calMonth, 1).getDay();
+    var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+
+    // Previous month padding
+    var prevDays = new Date(calYear, calMonth, 0).getDate();
+    for (var p = firstDay - 1; p >= 0; p--) {
+      html += '<div class="cal-day other-month">' + (prevDays - p) + '</div>';
+    }
+
+    for (var day = 1; day <= daysInMonth; day++) {
+      var dateStr = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+      var hasShift = shiftDates[dateStr] ? true : false;
+      var isToday = dateStr === todayStr;
+      var classes = 'cal-day';
+      if (hasShift) classes += ' has-shift';
+      if (isToday) classes += ' today';
+
+      if (hasShift) {
+        html += '<div class="' + classes + '" onclick="showDayDetail(\'' + dateStr + '\')">' + day;
+        html += '<span class="cal-dot"></span>';
+        html += '</div>';
+      } else {
+        html += '<div class="' + classes + '">' + day + '</div>';
+      }
+    }
+
+    // Next month padding
+    var totalCells = firstDay + daysInMonth;
+    var remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (var n = 1; n <= remaining; n++) {
+      html += '<div class="cal-day other-month">' + n + '</div>';
+    }
+
+    html += '</div>';
+    el.innerHTML = html;
+    document.getElementById('day-detail').innerHTML = '';
+  }
+
+  function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
+  function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+
+  function showDayDetail(dateStr) {
+    var el = document.getElementById('day-detail');
+    var shifts = [];
+    for (var i = 0; i < allShifts.length; i++) {
+      if (allShifts[i].date === dateStr) shifts.push(allShifts[i]);
+    }
+    if (shifts.length === 0) { el.innerHTML = ''; return; }
+
+    var html = '<div class="day-detail">';
+    html += '<div class="day-detail-title">' + formatDate(dateStr) + '</div>';
+    for (var j = 0; j < shifts.length; j++) {
+      html += buildShiftCard(shifts[j]);
+    }
+    html += '</div>';
+    el.innerHTML = html;
   }
 </script>
-
 </body>
 </html>
