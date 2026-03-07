@@ -501,12 +501,20 @@
       var html = '';
       for (var i = 0; i < data.shifts.length; i++) {
         var s = data.shifts[i];
-        var badgeClass = 'badge-' + s.status.toLowerCase();
-        html += '<div class="shift-card">';
+        var statusLower = s.status.toLowerCase();
+        var badgeClass = 'badge-' + statusLower;
+        html += '<div class="shift-card" id="shift-card-' + s.uid + '">';
         html += '<div class="shift-date">' + formatDate(s.date) + '</div>';
         html += '<div class="shift-time">' + s.start_time + ' \u2013 ' + s.end_time + '</div>';
         html += '<div class="shift-position">' + s.position + '</div>';
         html += '<span class="shift-status-badge ' + badgeClass + '">' + s.status + '</span>';
+        // Show Confirm/Decline buttons for Sent or Proposed shifts
+        if (statusLower === 'sent' || statusLower === 'proposed') {
+          html += '<div class="actions" style="margin-top:12px;">';
+          html += '<button class="btn btn-confirm" onclick="respondFromLookup(\'' + s.uid + '\', \'confirmed\', this)">Confirm</button>';
+          html += '<button class="btn btn-decline" onclick="respondFromLookup(\'' + s.uid + '\', \'declined\', this)">Decline</button>';
+          html += '</div>';
+        }
         html += '</div>';
       }
 
@@ -524,6 +532,45 @@
       btn.textContent = 'View My Shifts';
       document.getElementById('error-msg').textContent = 'Could not connect. Please try again.';
       showState('error');
+    };
+    document.body.appendChild(script);
+  }
+
+  // =========================================
+  // RESPOND FROM LOOKUP VIEW
+  // =========================================
+
+  function respondFromLookup(shiftUid, status, buttonEl) {
+    var card = document.getElementById('shift-card-' + shiftUid);
+    var buttons = card.querySelectorAll('.btn');
+    for (var b = 0; b < buttons.length; b++) { buttons[b].disabled = true; }
+    buttonEl.textContent = status === 'confirmed' ? 'Confirming...' : 'Declining...';
+
+    var callbackName = 'cb_resp_' + Date.now();
+    window[callbackName] = function(data) {
+      // Find the actions div inside this card and replace it
+      var actionsDiv = card.querySelector('.actions');
+      if (!data || data.error) {
+        if (actionsDiv) actionsDiv.innerHTML = '<div class="status-msg status-error" style="padding:10px; font-size:13px;">Error. Reply to the text instead.</div>';
+        return;
+      }
+      var cssClass = status === 'confirmed' ? 'status-confirmed' : 'status-declined';
+      var msg = status === 'confirmed' ? 'Confirmed!' : 'Declined.';
+      if (actionsDiv) actionsDiv.innerHTML = '<div class="status-msg ' + cssClass + '" style="padding:10px; font-size:13px; margin-top:0;">' + msg + '</div>';
+      // Update the badge
+      var badge = card.querySelector('.shift-status-badge');
+      if (badge) {
+        badge.className = 'shift-status-badge badge-' + status;
+        badge.textContent = status === 'confirmed' ? 'Confirmed' : 'Declined';
+      }
+      delete window[callbackName];
+    };
+
+    var script = document.createElement('script');
+    script.src = API_URL + '?action=updateStatus&uid=' + encodeURIComponent(shiftUid) + '&status=' + encodeURIComponent(status) + '&callback=' + callbackName;
+    script.onerror = function() {
+      var actionsDiv = card.querySelector('.actions');
+      if (actionsDiv) actionsDiv.innerHTML = '<div class="status-msg status-error" style="padding:10px; font-size:13px;">Could not connect. Reply to the text instead.</div>';
     };
     document.body.appendChild(script);
   }
