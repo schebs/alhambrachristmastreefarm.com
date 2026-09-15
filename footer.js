@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Alhambra Valley Christmas Tree Farm. Family owned and operated since 1969.</p>
+                <p>&copy; 2026 Alhambra Valley Christmas Tree Farm. Family owned and operated since 1969.</p>
             </div>
         </div>
     </footer>
